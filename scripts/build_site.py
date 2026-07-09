@@ -60,6 +60,12 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.3s}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--blue);transition:.25s}
 .nav-links a:hover,.nav-links a.active{color:var(--blue)}
 .nav-links a.active::after,.nav-links a:hover::after{width:100%}
+.nav-links.on-dark a{color:rgba(255,255,255,.88)}
+.nav-links.on-dark a:hover,.nav-links.on-dark a.active{color:#fff}
+header:not(.header-solid) .nav-cta .btn-ghost{border-color:rgba(255,255,255,.35);color:#fff}
+header:not(.header-solid) .nav-cta .btn-ghost:hover{border-color:var(--azure);color:var(--azure)}
+header:not(.header-solid) .brand .logo{filter:brightness(0) invert(1)}
+header:not(.header-solid) .menu-btn span{background:#fff}
 .nav-cta{display:flex;align-items:center;gap:14px}
 .header-solid{background:rgba(255,255,255,.86);backdrop-filter:blur(14px);box-shadow:var(--shadow-sm);border-bottom:1px solid var(--line)}
 .header-solid .brand .mono{display:block}
@@ -158,6 +164,45 @@ footer{background:var(--ink);color:rgba(255,255,255,.75);padding:70px 0 0}
 .foot-social{display:flex;gap:12px}
 .foot-social a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.06);display:grid;place-items:center;transition:.25s}
 .foot-social a:hover{background:var(--blue);transform:translateY(-3px)}
+.foot-news{display:flex;gap:10px;margin-top:16px}
+.foot-news input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;color:#fff;font-family:var(--font-body);font-size:14px}
+.foot-news input::placeholder{color:rgba(255,255,255,.45)}
+.foot-news button{background:var(--azure);color:#06283d;border:0;border-radius:10px;padding:0 18px;font-weight:700;cursor:pointer;font-family:var(--font-body);font-size:14px}
+/* ===== Cinematic hero slider ===== */
+.hero-slider{position:relative;min-height:760px;display:flex;align-items:center;overflow:hidden;color:#fff}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease;background-size:cover;background-position:center}
+.hero-slide.active{opacity:1}
+.hero-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,16,31,.93) 0%,rgba(7,16,31,.74) 44%,rgba(7,16,31,.25) 100%)}
+.hero-slider .container{position:relative;z-index:2;width:100%}
+.hs-copy{position:relative;z-index:2;max-width:680px}
+.hs-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(56,189,248,.14);border:1px solid rgba(56,189,248,.3);border-radius:100px;padding:8px 16px;font-size:13.5px;font-weight:500;margin-bottom:26px;backdrop-filter:blur(6px)}
+.hs-badge .dot{width:9px;height:9px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 4px rgba(34,197,94,.18);animation:pulse 2s infinite}
+.hero-slider h1{font-size:clamp(40px,5.6vw,72px);margin-bottom:22px;color:#fff;line-height:1.05}
+.hero-slider h1 .accent{color:var(--azure)}
+.hero-slider p.lead{font-size:19px;color:rgba(255,255,255,.86);max-width:560px;margin-bottom:34px}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:14px}
+.hero-stats .s b{font-family:var(--font-display);font-size:32px;color:#fff}
+.hero-stats .s span{font-size:13.5px;color:rgba(255,255,255,.7)}
+.hs-dots{position:absolute;bottom:34px;left:0;right:0;z-index:3;display:flex;gap:12px;justify-content:center}
+.hs-dots button{width:40px;height:5px;border-radius:5px;border:0;background:rgba(255,255,255,.3);cursor:pointer;transition:.3s;padding:0}
+.hs-dots button.active{background:var(--azure);width:56px}
+.hs-scroll{position:absolute;bottom:34px;right:34px;z-index:3;color:rgba(255,255,255,.55);font-size:11.5px;font-family:var(--font-mono);letter-spacing:.12em;writing-mode:vertical-rl;display:flex;align-items:center;gap:10px}
+.hs-scroll::after{content:"";width:1px;height:44px;background:rgba(255,255,255,.4)}
+/* ===== Rating strip ===== */
+.rating-strip{display:flex;align-items:center;justify-content:center;gap:44px;flex-wrap:wrap;padding:38px 0;background:var(--cloud-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.rating-strip .rs{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-weight:600;color:var(--ink-2)}
+.rating-strip .rs .stars{color:var(--amber);letter-spacing:2px;font-size:18px;line-height:1}
+.rating-strip .rs small{display:block;font-family:var(--font-body);font-weight:400;font-size:12.5px;color:var(--slate)}
+/* ===== Testimonials ===== */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testi-card{background:var(--cloud);border:1px solid var(--line);border-radius:var(--radius);padding:32px 30px;display:flex;flex-direction:column;gap:18px;transition:.3s}
+.testi-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.testi-card .mark{font-family:var(--font-display);font-size:46px;line-height:.6;color:var(--azure);opacity:.5}
+.testi-card .quote{color:var(--slate);font-size:15px;line-height:1.7}
+.testi-card .who{display:flex;align-items:center;gap:14px;margin-top:auto}
+.testi-card .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(150deg,var(--blue),var(--azure));color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:16px;flex-shrink:0}
+.testi-card .who b{font-family:var(--font-display);font-size:15px;display:block;color:var(--ink)}
+.testi-card .who span{font-size:13px;color:var(--slate)}
 .foot-social svg{width:18px;height:18px;color:#fff}
 /* sub-page hero */
 .page-hero{padding:160px 0 70px;background:
@@ -307,7 +352,7 @@ I = {
 # ----------------------------------------------------------------------------
 #  SHARED CHROME
 # ----------------------------------------------------------------------------
-def header(active=""):
+def header(active="", transparent=False):
     links = [
         ("Home","index.html"),("About","about.html"),("Solutions","solutions.html"),
         ("Industries","industries.html"),("Projects","projects.html"),
@@ -318,14 +363,16 @@ def header(active=""):
         return f'<a href="{u}"{cls}>{t}</a>'
     nav = "".join(navlink(t, u) for t, u in links)
     mm = nav
+    solid_cls = "" if transparent else " header-solid"
+    nav_cls = "nav-links on-dark" if transparent else "nav-links"
     return f"""
-<header id="hdr">
+<header id="hdr" class="{solid_cls.strip()}">
   <div class="container nav">
     <a href="index.html" class="brand">
       <img class="logo" src="{ASSETS}/logo.png" alt="IRIS Fire & Security" />
       <img class="mono" src="{ASSETS}/monogram.png" alt="" />
     </a>
-    <nav class="nav-links">{nav}</nav>
+    <nav class="{nav_cls}">{nav}</nav>
     <div class="nav-cta">
       <a href="tel:+919996444222" class="btn btn-ghost">
         {I['phone']} +91 99964 44222
@@ -366,6 +413,10 @@ def footer():
       <div class="row">{I['phone']}<span>+91 99964 44222</span></div>
       <div class="row">{I['mail']}<span>iris.gurgaon@gmail.com</span></div>
       <div class="row">{I['pin']}<span>Gurgaon, Haryana — serving Delhi NCR</span></div>
+      <form class="foot-news" onsubmit="event.preventDefault();this.innerHTML='<p style=&quot;color:var(--azure);font-size:14px&quot;>Thanks — we\\'ll be in touch.</p>'">
+        <input type="email" placeholder="Your email" required aria-label="Email" />
+        <button type="submit">Subscribe</button>
+      </form>
     </div>
   </div>
   <div class="container foot-bottom">
@@ -388,9 +439,16 @@ if(mb){mb.addEventListener('click',()=>mm.classList.toggle('open'));
 mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));}
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// hero slider
+const slides=document.querySelectorAll('.hero-slide'),dots=document.querySelectorAll('#hsDots button');
+if(slides.length){let i=0,timer;
+const go=n=>{slides.forEach(s=>s.classList.remove('active'));dots.forEach(d=>d.classList.remove('active'));i=(n+slides.length)%slides.length;slides[i].classList.add('active');dots[i].classList.add('active')};
+const next=()=>go(i+1);const play=()=>timer=setInterval(next,5500);
+dots.forEach(d=>d.addEventListener('click',()=>{go(+d.dataset.i);clearInterval(timer);play()}));
+play();}
 </script>"""
 
-def page(title, desc, body, active=""):
+def page(title, desc, body, active="", transparent=False):
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -405,7 +463,7 @@ def page(title, desc, body, active=""):
 <style>{CSS}</style>
 </head>
 <body>
-{header(active)}
+{header(active, transparent)}
 {body}
 {footer()}
 {JS}
@@ -418,15 +476,18 @@ def page(title, desc, body, active=""):
 
 def home():
     body = f"""
-<section class="hero" id="top">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <div class="hero-badge"><span class="dot"></span> 14+ years protecting Delhi NCR</div>
+<section class="hero-slider" id="top">
+  <div class="hero-slide active" style="background-image:url('{ASSETS}/hero-tower.png')"></div>
+  <div class="hero-slide" style="background-image:url('{ASSETS}/hero-soc.png')"></div>
+  <div class="hero-slide" style="background-image:url('{ASSETS}/tech-cctv.png')"></div>
+  <div class="container">
+    <div class="hs-copy">
+      <div class="hs-badge"><span class="dot"></span> 14+ years protecting Delhi NCR</div>
       <h1>The Innovation That<br><span class="accent">Keeps You Safe.</span></h1>
       <p class="lead">IRIS Fire &amp; Security is a leading system integrator delivering turnkey fire detection, video surveillance, access control and building automation &mdash; engineered and serviced in your backyard.</p>
       <div class="hero-actions">
         <a href="contact.html" class="btn btn-primary">{I['chat']} Request a Consultation</a>
-        <a href="solutions.html" class="btn btn-ghost">Explore Solutions</a>
+        <a href="solutions.html" class="btn btn-ghost" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.35)">Explore Solutions</a>
       </div>
       <div class="hero-stats">
         <div class="s"><b>120+</b><span>Projects delivered</span></div>
@@ -434,20 +495,20 @@ def home():
         <div class="s"><b>8</b><span>Product lines</span></div>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="frame">
-        <img src="{ASSETS}/hero-tower.png" alt="Modern commercial building protected by IRIS" />
-        <div class="hud"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span></div>
-      </div>
-      <div class="hero-float f1"><div class="ic">{I['eye']}</div> 24/7 Monitored</div>
-      <div class="hero-float f2"><div class="ic">{I['flame']}</div> Fire &amp; Life Safety</div>
-    </div>
   </div>
+  <div class="hs-dots" id="hsDots">
+    <button class="active" data-i="0" aria-label="Slide 1"></button>
+    <button data-i="1" aria-label="Slide 2"></button>
+    <button data-i="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="hs-scroll">SCROLL</div>
 </section>
-<div class="strip"><div class="container">
-  <span>Trusted across</span>
-  <div class="items"><span>Commercial</span><span>Residential</span><span>Education</span><span>Healthcare</span><span>Government</span></div>
-</div></div>
+<div class="rating-strip">
+  <div class="rs"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><div>4.8<span style="color:var(--amber)"> /5</span><small>Google Reviews</small></div></div>
+  <div class="rs"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><div>4.7<span style="color:var(--amber)"> /5</span><small>JustDial</small></div></div>
+  <div class="rs"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><div>120+<small>Happy clients</small></div></div>
+  <div class="rs"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><div>14+<small>Years trusted</small></div></div>
+</div>
 <section class="section services">
   <div class="container">
     <div class="section-head reveal"><span class="eyebrow">What we deliver</span>
@@ -506,8 +567,35 @@ def home():
       {ind_card(f'{ASSETS}/hero-tower.png','Commercial','Offices, malls &amp; towers')}
       {ind_card(f'{ASSETS}/hero-soc.png','Government','Departments &amp; public infra')}
       {ind_card(f'{ASSETS}/tech-cctv.png','Retail &amp; Enterprise','Stores, warehouses &amp; HQs')}
+      {ind_card(f'{ASSETS}/ind-school.png','Banking &amp; Finance','Branches &amp; data centres')}
+      {ind_card(f'{ASSETS}/ind-hospital.png','Industrial &amp; Manufacturing','Plants, warehouses &amp; yards')}
+      {ind_card(f'{ASSETS}/ind-villa.png','Hospitality','Hotels, resorts &amp; banquets')}
     </div>
-    <div style="text-align:center;margin-top:48px" class="reveal"><a href="industries.html" class="btn btn-primary">Explore industries</a></div>
+    <div style="text-align:center;margin-top:48px" class="reveal"><a href="industries.html" class="btn btn-primary">Explore all industries</a></div>
+  </div>
+</section>
+<section class="section testi">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">Client stories</span>
+      <h2>Trusted by Delhi NCR's operators</h2>
+      <p>Facility managers, builders and business owners who rely on IRIS to keep people and assets protected &mdash; day and night.</p></div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="mark">&ldquo;</div>
+        <p class="quote">IRIS delivered our full CCTV and fire-alarm upgrade across two buildings on a tight deadline. Clean execution, zero downtime, and the AMC response has been genuinely fast whenever we've needed them.</p>
+        <div class="who"><div class="av">RS</div><div><b>R. Sharma</b><span>Facilities Head, Golf Course Road</span></div></div>
+      </div>
+      <div class="testi-card reveal d2">
+        <div class="mark">&ldquo;</div>
+        <p class="quote">We moved our society to IRIS for access control and surveillance. The team explained options without overselling, trained our staff, and the system has been rock-solid for over a year.</p>
+        <div class="who"><div class="av">AK</div><div><b>A. Kapoor</b><span>RWA President, DLF Phase 3</span></div></div>
+      </div>
+      <div class="testi-card reveal d3">
+        <div class="mark">&ldquo;</div>
+        <p class="quote">From design to handover, IRIS handled our office automation and PA system as one accountable partner. Transparent pricing and a support line that actually picks up &mdash; rare in this trade.</p>
+        <div class="who"><div class="av">MV</div><div><b>M. Verma</b><span>Director, Sohna Road SME</span></div></div>
+      </div>
+    </div>
   </div>
 </section>
 <section class="cta-band"><div class="container cta-inner">
@@ -520,7 +608,7 @@ def home():
 </div></section>"""
     return page("IRIS Fire & Security — Mission-Critical Fire & Security Solutions | Delhi NCR",
                 "IRIS Fire & Security is a leading system integrator in electronic safety & security. Turnkey fire alarm, CCTV, access control, automation & AMC across Delhi NCR.",
-                body, "index.html")
+                body, "index.html", transparent=True)
 
 def svc_card(ic,title,desc):
     return f'<div class="svc reveal"><div class="ic">{ic}</div><h3>{title}</h3><p>{desc}</p><a class="more" href="solutions.html">Learn more &rarr;</a></div>'
