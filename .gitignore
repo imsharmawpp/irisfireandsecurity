@@ -1,0 +1,13 @@
+# Python build artifacts
+__pycache__/
+*.pyc
+scripts/__pycache__/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# local preview screenshots (if any)
+assets/_qa_*.png
+assets/_deploy_check.png
