@@ -62,8 +62,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.3s}
 .nav-links a.active::after,.nav-links a:hover::after{width:100%}
 .nav-links.on-dark a{color:rgba(255,255,255,.88)}
 .nav-links.on-dark a:hover,.nav-links.on-dark a.active{color:#fff}
-header:not(.header-solid) .nav-cta .btn-ghost{border-color:rgba(255,255,255,.35);color:#fff}
-header:not(.header-solid) .nav-cta .btn-ghost:hover{border-color:var(--azure);color:var(--azure)}
+header:not(.header-solid) .nav-cta .btn-ghost{background:rgba(10,20,38,.28);border-color:rgba(255,255,255,.4);color:#fff}
+header:not(.header-solid) .nav-cta .btn-ghost:hover{background:rgba(10,20,38,.42);border-color:var(--azure);color:#fff}
 header:not(.header-solid) .brand .logo{filter:brightness(0) invert(1)}
 header:not(.header-solid) .menu-btn span{background:#fff}
 .nav-cta{display:flex;align-items:center;gap:14px}
