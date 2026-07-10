@@ -99,16 +99,23 @@ header:not(.header-solid) .menu-btn span{background:#fff}
 .has-mega{position:relative}
 .nav-links .has-mega > a{display:inline-flex;align-items:center;gap:6px}
 .nav-links .has-mega > a::after{content:"\25BE";font-size:10px;margin-left:2px;width:auto;height:auto;background:none;position:static}
-.mega{position:absolute;top:100%;left:0;width:300px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 20px 50px rgba(11,95,204,.16);padding:10px;display:flex;flex-direction:column;gap:3px;opacity:0;visibility:hidden;transform:translateY(10px);transition:.2s ease;z-index:300}
-.has-mega:hover .mega{opacity:1;visibility:visible;transform:translateY(0)}
-.mega::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
-.mega a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:11px;color:var(--ink-2);font-size:14px;font-weight:500;transition:.16s}
-.mega a:hover{background:var(--cloud);color:var(--blue)}
-.mega a .mi{width:34px;height:34px;border-radius:9px;background:linear-gradient(150deg,rgba(11,95,204,.12),rgba(56,189,248,.12));color:var(--blue);display:grid;place-items:center;flex-shrink:0}
-.mega a .mi svg{width:18px;height:18px}
-.mega a b{font-family:var(--font-display);font-size:14px;display:block;color:var(--ink);line-height:1.2}
+.mega{position:absolute;top:100%;left:50%;transform:translate(-50%,10px);width:min(620px,92vw);background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 30px 70px rgba(10,20,38,.20);padding:16px;opacity:0;visibility:hidden;transition:.22s cubic-bezier(.2,.7,.3,1);z-index:300}
+.has-mega:hover .mega{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.mega::before{content:"";position:absolute;top:-18px;left:0;right:0;height:18px}
+.mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.mega a{display:flex;align-items:center;gap:13px;padding:12px 13px;border-radius:13px;transition:.16s;border:1px solid transparent}
+.mega-grid a:hover{background:var(--cloud);border-color:var(--line)}
+.mega a .mi{width:40px;height:40px;border-radius:11px;background:linear-gradient(150deg,rgba(11,95,204,.14),rgba(56,189,248,.14));color:var(--blue);display:grid;place-items:center;flex-shrink:0;transition:.16s}
+.mega-grid a:hover .mi{background:var(--blue);color:#fff}
+.mega a .mi svg{width:20px;height:20px}
+.mega a .mtxt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.mega a .mtxt b{font-family:var(--font-display);font-size:14.5px;color:var(--ink);line-height:1.2}
+.mega a .mtxt small{font-size:12px;color:var(--slate);line-height:1.25}
+.mega-foot{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;padding:12px;border-radius:12px;background:var(--ink);color:#fff!important;font-family:var(--font-display);font-size:14px;font-weight:600;transition:.18s}
+.mega-foot:hover{background:var(--blue)}
+.mega-foot span{transition:.18s}
+.mega-foot:hover span{transform:translateX(4px)}
 header:not(.header-solid) .mega{background:#fff}
-header:not(.header-solid) .mega a{color:var(--ink-2)}
 .header-solid .brand .mono{display:block}
 .menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px}
 .menu-btn span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:.3s}
@@ -419,8 +426,20 @@ def header(active="", transparent=False):
     flat = [("Home","index.html"),("About","about.html"),("Industries","industries.html"),
             ("Projects","projects.html"),("Contact","contact.html"),("Blog","blog.html")]
     # mega menu for Solutions (built from SOLUTIONS list)
+    # icon-key -> dedicated service page + short descriptor (order matches SOLUTIONS)
+    mega_meta = [
+        ("cctv-surveillance.html","IP &amp; AI CCTV, remote monitoring"),
+        ("fire-alarm-system.html","Detection, alarm &amp; voice evacuation"),
+        ("access-control-system.html","Biometric, cards &amp; boom barriers"),
+        ("building-automation.html","Lighting, HVAC &amp; smart control"),
+        ("pa-system.html","Public address &amp; emergency comms"),
+        ("av-solutions.html","Conference, signage &amp; displays"),
+        ("it-networking.html","Structured cabling &amp; network backbone"),
+        ("amc-services.html","SLA-backed upkeep &amp; support"),
+    ]
     mega_items = "".join(
-        f'<a href="solutions.html"><span class="mi">{ic}</span><b>{t}</b></a>'
+        f'<a href="{mega_meta[i][0]}"><span class="mi">{I[ic]}</span>'
+        f'<span class="mtxt"><b>{t}</b><small>{mega_meta[i][1]}</small></span></a>'
         for i,(ic,t,img,lead,feats) in enumerate(SOLUTIONS))
     def navlink(t, u):
         cls = ' class="active"' if u == active else ''
@@ -441,7 +460,10 @@ def header(active="", transparent=False):
       {nav}
       <div class="has-mega">
         <a href="solutions.html">Solutions</a>
-        <div class="mega">{mega_items}</div>
+        <div class="mega">
+          <div class="mega-grid">{mega_items}</div>
+          <a class="mega-foot" href="solutions.html">View all solutions<span>&rarr;</span></a>
+        </div>
       </div>
     </nav>
     <div class="nav-cta">
