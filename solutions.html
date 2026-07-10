@@ -62,7 +62,22 @@ header:not(.header-solid) .nav-cta .btn-ghost:hover{background:rgba(10,20,38,.42
 header:not(.header-solid) .brand .logo{filter:brightness(0) invert(1)}
 header:not(.header-solid) .menu-btn span{background:#fff}
 .nav-cta{display:flex;align-items:center;gap:14px}
-.header-solid{background:rgba(255,255,255,.86);backdrop-filter:blur(14px);box-shadow:var(--shadow-sm);border-bottom:1px solid var(--line)}
+.header-solid{background:rgba(255,255,255,.97);backdrop-filter:blur(16px);box-shadow:0 4px 24px rgba(10,20,38,.10);border-bottom:1px solid var(--line)}
+/* mega menu */
+.has-mega{position:relative}
+.nav-links .has-mega > a{display:inline-flex;align-items:center;gap:6px}
+.nav-links .has-mega > a::after{content:"\25BE";font-size:10px;margin-left:2px;width:auto;height:auto;background:none;position:static}
+.mega{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(8px);width:min(720px,86vw);background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(11,95,204,.18);padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:6px;opacity:0;visibility:hidden;transition:.22s;z-index:200}
+.has-mega:hover .mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.mega::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+.mega a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;color:var(--ink-2);font-size:14.5px;font-weight:500;transition:.18s}
+.mega a:hover{background:var(--cloud);color:var(--blue)}
+.mega a .mi{width:38px;height:38px;border-radius:10px;background:linear-gradient(150deg,rgba(11,95,204,.12),rgba(56,189,248,.12));color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.mega a .mi svg{width:20px;height:20px}
+.mega a b{font-family:var(--font-display);font-size:14.5px;display:block;color:var(--ink)}
+.mega a small{font-size:12px;color:var(--slate)}
+header:not(.header-solid) .mega{background:#fff}
+header:not(.header-solid) .mega a{color:var(--ink-2)}
 .header-solid .brand .mono{display:block}
 .menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px}
 .menu-btn span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:.3s}
@@ -209,9 +224,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.75);padding:70px 0 0}
 .breadcrumb{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-light);margin-bottom:20px}
 .breadcrumb a{color:var(--blue)}
 /* solution detail */
-.sol{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;padding:80px 0;border-bottom:1px solid var(--line)}
+.sol{display:block;padding:84px 0;border-bottom:1px solid var(--line)}
 .sol:nth-child(even){background:var(--cloud)}
-.sol-rev{grid-template-columns:1.1fr .9fr}
+.sol-inner{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.sol-rev .sol-inner{grid-template-columns:1.1fr .9fr}
 .sol-rev .visual{order:2}
 .sol-rev .copy{order:1}
 .sol .copy .ic{width:60px;height:60px;border-radius:15px;background:linear-gradient(150deg,rgba(11,95,204,.12),rgba(56,189,248,.12));color:var(--blue);display:grid;place-items:center;margin-bottom:22px}
@@ -331,7 +347,13 @@ footer{background:var(--ink);color:rgba(255,255,255,.75);padding:70px 0 0}
       <img class="logo" src="assets/logo.png" alt="IRIS Fire & Security" />
       <img class="mono" src="assets/monogram.png" alt="" />
     </a>
-    <nav class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="solutions.html" class="active">Solutions</a><a href="industries.html">Industries</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a></nav>
+    <nav class="nav-links">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="industries.html">Industries</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a>
+      <div class="has-mega">
+        <a href="solutions.html">Solutions</a>
+        <div class="mega"><a href="solutions.html"><span class="mi">eye</span><span><b>Video Surveillance</b><small>Modern CCTV technology is turning video su…</small></span></a><a href="solutions.html"><span class="mi">flame</span><span><b>Fire Alarm &amp; Detection</b><small>IRIS delivers a wide range of fire alarm &…</small></span></a><a href="solutions.html"><span class="mi">lock</span><span><b>Access Control &amp; Barrier Solutions</b><small>IRIS works with a wide range of manufactur…</small></span></a><a href="solutions.html"><span class="mi">home</span><span><b>Building / Home Automation</b><small>Home and building automation handles many …</small></span></a><a href="solutions.html"><span class="mi">speaker</span><span><b>Communication &amp; PA System</b><small>IRIS offers the most extensive range of co…</small></span></a><a href="solutions.html"><span class="mi">av</span><span><b>AV Solutions</b><small>IRIS offers Audio Visual Systems Integrati…</small></span></a><a href="solutions.html"><span class="mi">net</span><span><b>IT / Networking Infrastructure</b><small>A reliable network backbone is what keeps …</small></span></a><a href="solutions.html"><span class="mi">wrench</span><span><b>AMC &amp; Maintenance Services</b><small>IRIS undertakes Annual Maintenance Contrac…</small></span></a></div>
+      </div>
+    </nav>
     <div class="nav-cta">
       <a href="tel:+919996444222" class="btn btn-ghost">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg> +91 99964 44222
@@ -340,7 +362,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.75);padding:70px 0 0}
       <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="about.html">About</a><a href="solutions.html" class="active">Solutions</a><a href="industries.html">Industries</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a></div>
+  <div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="about.html">About</a><a href="industries.html">Industries</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a><a href="solutions.html" class="active">Solutions</a></div>
 </header>
 
 <section class="page-hero"><div class="container">
@@ -350,83 +372,99 @@ footer{background:var(--ink);color:rgba(255,255,255,.75);padding:70px 0 0}
 </div></section>
 <section class="section" style="padding-top:60px">
 <div class="sol reveal">
-  <div class="visual"><img src="assets/tech-cctv.png" alt="Video Surveillance" /></div>
-  <div class="copy">
-    <span class="sol-index">SOLUTION 01</span>
-    <div class="ic">eye</div>
-    <h2>Video Surveillance</h2>
-    <p class="lead">Modern CCTV technology is turning video surveillance into one of the most valuable loss-prevention, remote-monitoring, security and management tools available today.</p>
-    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>IP &amp; HD-TVI camera systems</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>AI analytics: intrusion, loitering, face &amp; number-plate recognition</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Centralized remote monitoring &amp; mobile viewing</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Video management &amp; evidence-grade storage</li></ul>
+  <div class="sol-inner">
+    <div class="visual"><img src="assets/tech-cctv.png" alt="Video Surveillance" /></div>
+    <div class="copy">
+      <span class="sol-index">SOLUTION 01</span>
+      <div class="ic">eye</div>
+      <h2>Video Surveillance</h2>
+      <p class="lead">Modern CCTV technology is turning video surveillance into one of the most valuable loss-prevention, remote-monitoring, security and management tools available today.</p>
+      <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>IP &amp; HD-TVI camera systems</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>AI analytics: intrusion, loitering, face &amp; number-plate recognition</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Centralized remote monitoring &amp; mobile viewing</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Video management &amp; evidence-grade storage</li></ul>
+    </div>
   </div>
 </div>
 <div class="sol sol-rev reveal">
-  <div class="visual"><img src="assets/hero-soc.png" alt="Fire Alarm &amp; Detection" /></div>
-  <div class="copy">
-    <span class="sol-index">SOLUTION 02</span>
-    <div class="ic">flame</div>
-    <h2>Fire Alarm &amp; Detection</h2>
-    <p class="lead">IRIS delivers a wide range of fire alarm &amp; protection services across various applications including high-rise commercials, apartments and industrial sites.</p>
-    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Addressable &amp; conventional fire detection</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Smoke, heat, beam &amp; flame detectors</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Voice evacuation &amp; alarm panels</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Compliance-ready design &amp; sign-off support</li></ul>
+  <div class="sol-inner">
+    <div class="visual"><img src="assets/hero-soc.png" alt="Fire Alarm &amp; Detection" /></div>
+    <div class="copy">
+      <span class="sol-index">SOLUTION 02</span>
+      <div class="ic">flame</div>
+      <h2>Fire Alarm &amp; Detection</h2>
+      <p class="lead">IRIS delivers a wide range of fire alarm &amp; protection services across various applications including high-rise commercials, apartments and industrial sites.</p>
+      <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Addressable &amp; conventional fire detection</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Smoke, heat, beam &amp; flame detectors</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Voice evacuation &amp; alarm panels</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Compliance-ready design &amp; sign-off support</li></ul>
+    </div>
   </div>
 </div>
 <div class="sol reveal">
-  <div class="visual"><img src="assets/ind-villa.png" alt="Access Control &amp; Barrier Solutions" /></div>
-  <div class="copy">
-    <span class="sol-index">SOLUTION 03</span>
-    <div class="ic">lock</div>
-    <h2>Access Control &amp; Barrier Solutions</h2>
-    <p class="lead">IRIS works with a wide range of manufacturers to deliver advanced access control solutions &mdash; from simple keypads to enterprise biometric platforms.</p>
-    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Biometric, card &amp; mobile-credential access</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Turnstiles, boom barriers &amp; bollards</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Visitor management &amp; attendance</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Integration with CCTV &amp; fire for lock-down</li></ul>
+  <div class="sol-inner">
+    <div class="visual"><img src="assets/ind-villa.png" alt="Access Control &amp; Barrier Solutions" /></div>
+    <div class="copy">
+      <span class="sol-index">SOLUTION 03</span>
+      <div class="ic">lock</div>
+      <h2>Access Control &amp; Barrier Solutions</h2>
+      <p class="lead">IRIS works with a wide range of manufacturers to deliver advanced access control solutions &mdash; from simple keypads to enterprise biometric platforms.</p>
+      <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Biometric, card &amp; mobile-credential access</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Turnstiles, boom barriers &amp; bollards</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Visitor management &amp; attendance</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Integration with CCTV &amp; fire for lock-down</li></ul>
+    </div>
   </div>
 </div>
 <div class="sol sol-rev reveal">
-  <div class="visual"><img src="assets/ind-villa.png" alt="Building / Home Automation" /></div>
-  <div class="copy">
-    <span class="sol-index">SOLUTION 04</span>
-    <div class="ic">home</div>
-    <h2>Building / Home Automation</h2>
-    <p class="lead">Home and building automation handles many tasks (HVAC, lights, blinds) that reduce energy consumption and improve the comfort level across your space.</p>
-    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Lighting, curtain &amp; climate control</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Scene &amp; schedule automation</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Energy monitoring &amp; savings</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>App &amp; voice control</li></ul>
+  <div class="sol-inner">
+    <div class="visual"><img src="assets/ind-villa.png" alt="Building / Home Automation" /></div>
+    <div class="copy">
+      <span class="sol-index">SOLUTION 04</span>
+      <div class="ic">home</div>
+      <h2>Building / Home Automation</h2>
+      <p class="lead">Home and building automation handles many tasks (HVAC, lights, blinds) that reduce energy consumption and improve the comfort level across your space.</p>
+      <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Lighting, curtain &amp; climate control</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Scene &amp; schedule automation</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Energy monitoring &amp; savings</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>App &amp; voice control</li></ul>
+    </div>
   </div>
 </div>
 <div class="sol reveal">
-  <div class="visual"><img src="assets/hero-soc.png" alt="Communication &amp; PA System" /></div>
-  <div class="copy">
-    <span class="sol-index">SOLUTION 05</span>
-    <div class="ic">speaker</div>
-    <h2>Communication &amp; PA System</h2>
-    <p class="lead">IRIS offers the most extensive range of communication systems in a variety of standard and digital designs to handle the needs of small to large businesses.</p>
-    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Public address &amp; background music</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Emergency &amp; evacuation voice systems</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Intercom &amp; nurse-call</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>IP-based paging across campuses</li></ul>
+  <div class="sol-inner">
+    <div class="visual"><img src="assets/hero-soc.png" alt="Communication &amp; PA System" /></div>
+    <div class="copy">
+      <span class="sol-index">SOLUTION 05</span>
+      <div class="ic">speaker</div>
+      <h2>Communication &amp; PA System</h2>
+      <p class="lead">IRIS offers the most extensive range of communication systems in a variety of standard and digital designs to handle the needs of small to large businesses.</p>
+      <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Public address &amp; background music</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Emergency &amp; evacuation voice systems</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Intercom &amp; nurse-call</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>IP-based paging across campuses</li></ul>
+    </div>
   </div>
 </div>
 <div class="sol sol-rev reveal">
-  <div class="visual"><img src="assets/ind-school.png" alt="AV Solutions" /></div>
-  <div class="copy">
-    <span class="sol-index">SOLUTION 06</span>
-    <div class="ic">av</div>
-    <h2>AV Solutions</h2>
-    <p class="lead">IRIS offers Audio Visual Systems Integration (AVSI) solutions, services and support &mdash; fully customized as per client requirements.</p>
-    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Conference &amp; meeting-room systems</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Digital signage &amp; displays</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Lecture capture &amp; classrooms</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Experience &amp; experience centres</li></ul>
+  <div class="sol-inner">
+    <div class="visual"><img src="assets/ind-school.png" alt="AV Solutions" /></div>
+    <div class="copy">
+      <span class="sol-index">SOLUTION 06</span>
+      <div class="ic">av</div>
+      <h2>AV Solutions</h2>
+      <p class="lead">IRIS offers Audio Visual Systems Integration (AVSI) solutions, services and support &mdash; fully customized as per client requirements.</p>
+      <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Conference &amp; meeting-room systems</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Digital signage &amp; displays</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Lecture capture &amp; classrooms</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Experience &amp; experience centres</li></ul>
+    </div>
   </div>
 </div>
 <div class="sol reveal">
-  <div class="visual"><img src="assets/hero-tower.png" alt="IT / Networking Infrastructure" /></div>
-  <div class="copy">
-    <span class="sol-index">SOLUTION 07</span>
-    <div class="ic">net</div>
-    <h2>IT / Networking Infrastructure</h2>
-    <p class="lead">A reliable network backbone is what keeps every security subsystem online. IRIS designs and installs structured cabling and active networking.</p>
-    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Structured cabling (Cat6/6A, fibre)</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Network switches, Wi-Fi &amp; VLANs</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>PoE design for cameras &amp; access</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Surveillance-grade storage &amp; NVRs</li></ul>
+  <div class="sol-inner">
+    <div class="visual"><img src="assets/hero-tower.png" alt="IT / Networking Infrastructure" /></div>
+    <div class="copy">
+      <span class="sol-index">SOLUTION 07</span>
+      <div class="ic">net</div>
+      <h2>IT / Networking Infrastructure</h2>
+      <p class="lead">A reliable network backbone is what keeps every security subsystem online. IRIS designs and installs structured cabling and active networking.</p>
+      <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Structured cabling (Cat6/6A, fibre)</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Network switches, Wi-Fi &amp; VLANs</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>PoE design for cameras &amp; access</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Surveillance-grade storage &amp; NVRs</li></ul>
+    </div>
   </div>
 </div>
 <div class="sol sol-rev reveal">
-  <div class="visual"><img src="assets/tech-cctv.png" alt="AMC &amp; Maintenance Services" /></div>
-  <div class="copy">
-    <span class="sol-index">SOLUTION 08</span>
-    <div class="ic">wrench</div>
-    <h2>AMC &amp; Maintenance Services</h2>
-    <p class="lead">IRIS undertakes Annual Maintenance Contracts (AMCs) with service-level commitments (SLAs) for projects executed by us and those installed by others.</p>
-    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Standard &amp; Comprehensive AMCs</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>SLA-backed response &amp; uptime</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Spares &amp; non-repairable replacement</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>End-user &amp; train-the-trainer programs</li></ul>
+  <div class="sol-inner">
+    <div class="visual"><img src="assets/tech-cctv.png" alt="AMC &amp; Maintenance Services" /></div>
+    <div class="copy">
+      <span class="sol-index">SOLUTION 08</span>
+      <div class="ic">wrench</div>
+      <h2>AMC &amp; Maintenance Services</h2>
+      <p class="lead">IRIS undertakes Annual Maintenance Contracts (AMCs) with service-level commitments (SLAs) for projects executed by us and those installed by others.</p>
+      <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Standard &amp; Comprehensive AMCs</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>SLA-backed response &amp; uptime</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Spares &amp; non-repairable replacement</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>End-user &amp; train-the-trainer programs</li></ul>
+    </div>
   </div>
 </div></section>
 <section class="cta-band"><div class="container cta-inner">

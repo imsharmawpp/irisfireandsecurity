@@ -67,7 +67,22 @@ header:not(.header-solid) .nav-cta .btn-ghost:hover{background:rgba(10,20,38,.42
 header:not(.header-solid) .brand .logo{filter:brightness(0) invert(1)}
 header:not(.header-solid) .menu-btn span{background:#fff}
 .nav-cta{display:flex;align-items:center;gap:14px}
-.header-solid{background:rgba(255,255,255,.86);backdrop-filter:blur(14px);box-shadow:var(--shadow-sm);border-bottom:1px solid var(--line)}
+.header-solid{background:rgba(255,255,255,.97);backdrop-filter:blur(16px);box-shadow:0 4px 24px rgba(10,20,38,.10);border-bottom:1px solid var(--line)}
+/* mega menu */
+.has-mega{position:relative}
+.nav-links .has-mega > a{display:inline-flex;align-items:center;gap:6px}
+.nav-links .has-mega > a::after{content:"\25BE";font-size:10px;margin-left:2px;width:auto;height:auto;background:none;position:static}
+.mega{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(8px);width:min(720px,86vw);background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(11,95,204,.18);padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:6px;opacity:0;visibility:hidden;transition:.22s;z-index:200}
+.has-mega:hover .mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.mega::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+.mega a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;color:var(--ink-2);font-size:14.5px;font-weight:500;transition:.18s}
+.mega a:hover{background:var(--cloud);color:var(--blue)}
+.mega a .mi{width:38px;height:38px;border-radius:10px;background:linear-gradient(150deg,rgba(11,95,204,.12),rgba(56,189,248,.12));color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.mega a .mi svg{width:20px;height:20px}
+.mega a b{font-family:var(--font-display);font-size:14.5px;display:block;color:var(--ink)}
+.mega a small{font-size:12px;color:var(--slate)}
+header:not(.header-solid) .mega{background:#fff}
+header:not(.header-solid) .mega a{color:var(--ink-2)}
 .header-solid .brand .mono{display:block}
 .menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px}
 .menu-btn span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:.3s}
@@ -214,9 +229,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.75);padding:70px 0 0}
 .breadcrumb{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-light);margin-bottom:20px}
 .breadcrumb a{color:var(--blue)}
 /* solution detail */
-.sol{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;padding:80px 0;border-bottom:1px solid var(--line)}
+.sol{display:block;padding:84px 0;border-bottom:1px solid var(--line)}
 .sol:nth-child(even){background:var(--cloud)}
-.sol-rev{grid-template-columns:1.1fr .9fr}
+.sol-inner{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.sol-rev .sol-inner{grid-template-columns:1.1fr .9fr}
 .sol-rev .visual{order:2}
 .sol-rev .copy{order:1}
 .sol .copy .ic{width:60px;height:60px;border-radius:15px;background:linear-gradient(150deg,rgba(11,95,204,.12),rgba(56,189,248,.12));color:var(--blue);display:grid;place-items:center;margin-bottom:22px}
@@ -353,16 +369,19 @@ I = {
 #  SHARED CHROME
 # ----------------------------------------------------------------------------
 def header(active="", transparent=False):
-    links = [
-        ("Home","index.html"),("About","about.html"),("Solutions","solutions.html"),
-        ("Industries","industries.html"),("Projects","projects.html"),
-        ("Contact","contact.html"),("Blog","blog.html"),
-    ]
+    # flat links
+    flat = [("Home","index.html"),("About","about.html"),("Industries","industries.html"),
+            ("Projects","projects.html"),("Contact","contact.html"),("Blog","blog.html")]
+    # mega menu for Solutions (built from SOLUTIONS list)
+    mega_items = "".join(
+        f'<a href="solutions.html"><span class="mi">{ic}</span><span><b>{t}</b><small>{SOLUTIONS[i][3][:42]}…</small></span></a>'
+        for i,(ic,t,img,lead,feats) in enumerate(SOLUTIONS))
     def navlink(t, u):
         cls = ' class="active"' if u == active else ''
         return f'<a href="{u}"{cls}>{t}</a>'
-    nav = "".join(navlink(t, u) for t, u in links)
-    mm = nav
+    nav = "".join(navlink(t, u) for t, u in flat)
+    # mobile menu (flat + solutions group)
+    mm = nav + f'<a href="solutions.html" class="active">Solutions</a>'
     solid_cls = "" if transparent else " header-solid"
     nav_cls = "nav-links on-dark" if transparent else "nav-links"
     return f"""
@@ -372,7 +391,13 @@ def header(active="", transparent=False):
       <img class="logo" src="{ASSETS}/logo.png" alt="IRIS Fire & Security" />
       <img class="mono" src="{ASSETS}/monogram.png" alt="" />
     </a>
-    <nav class="{nav_cls}">{nav}</nav>
+    <nav class="{nav_cls}">
+      {nav}
+      <div class="has-mega">
+        <a href="solutions.html">Solutions</a>
+        <div class="mega">{mega_items}</div>
+      </div>
+    </nav>
     <div class="nav-cta">
       <a href="tel:+919996444222" class="btn btn-ghost">
         {I['phone']} +91 99964 44222
@@ -706,13 +731,15 @@ def solutions():
         fl = "".join(f'<li>{I["check"]}{f}</li>' for f in feats)
         rows += f"""
 <div class="sol{rev} reveal">
-  <div class="visual"><img src="{img}" alt="{t}" /></div>
-  <div class="copy">
-    <span class="sol-index">SOLUTION {str(i+1).zfill(2)}</span>
-    <div class="ic">{ic}</div>
-    <h2>{t}</h2>
-    <p class="lead">{lead}</p>
-    <ul class="feat">{fl}</ul>
+  <div class="sol-inner">
+    <div class="visual"><img src="{img}" alt="{t}" /></div>
+    <div class="copy">
+      <span class="sol-index">SOLUTION {str(i+1).zfill(2)}</span>
+      <div class="ic">{ic}</div>
+      <h2>{t}</h2>
+      <p class="lead">{lead}</p>
+      <ul class="feat">{fl}</ul>
+    </div>
   </div>
 </div>"""
     body = f"""
