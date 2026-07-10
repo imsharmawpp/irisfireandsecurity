@@ -162,6 +162,16 @@ header:not(.header-solid) .mega a{color:var(--ink-2)}
 .cta-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:64px 0;flex-wrap:wrap}
 .cta-inner h2{color:#fff;margin-bottom:8px;font-size:clamp(26px,3.4vw,40px)}
 .cta-inner p{color:rgba(255,255,255,.85);font-size:17px;max-width:520px}
+.faq-section{background:var(--cloud)}
+.faq-list{max-width:840px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.25s}
+.faq-item[open]{box-shadow:0 12px 30px rgba(11,95,204,.10);border-color:rgba(11,95,204,.3)}
+.faq-item summary{list-style:none;cursor:pointer;padding:20px 24px;font-family:var(--font-display);font-weight:600;font-size:17px;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-size:24px;color:var(--blue);font-weight:400;transition:.25s;flex-shrink:0}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-a{padding:0 24px 22px}
+.faq-a p{color:var(--slate);font-size:15.5px;line-height:1.75;margin:0}
 footer{padding:74px 0 0;background:var(--ink);position:relative;overflow:hidden}
 footer::before{content:"";position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(11,95,204,.28),transparent 70%);bottom:-180px;right:-160px}
 .foot-grid{display:grid;grid-template-columns:1.1fr repeat(4,1fr);gap:30px;padding-bottom:50px}
@@ -371,7 +381,7 @@ footer,.foot-col a,.foot-brand p{color:rgba(255,255,255,.72)}
   "serviceType":"PA & Communication","description":"Public address, emergency voice evacuation and intercom systems.",
   "provider":{"@id":"https://irisfireandsecurity.vercel.app/#business"},
   "areaServed":["Gurgaon","Delhi","Noida","Faridabad"]
-}</script>
+}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does PA system cost in Gurgaon / Delhi NCR?", "acceptedAnswer": {"@type": "Answer", "text": "The cost of PA system depends on site size, number of devices, brand and integration needs. IRIS Fire & Security provides a free on-site survey and a transparent, itemised quote for pa & communication across Gurgaon, Delhi, Noida and Faridabad \u2014 with no hidden charges."}}, {"@type": "Question", "name": "Do you provide PA system and ongoing maintenance (AMC)?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We handle end-to-end pa & communication \u2014 design, supply, installation, commissioning and ongoing AMC. Our SLA-backed maintenance contracts keep your system operational with fast local response across Delhi NCR."}}, {"@type": "Question", "name": "How long does pa & communication installation take?", "acceptedAnswer": {"@type": "Answer", "text": "Most residential and small-office PA system projects are completed within 1\u20133 days after survey and approval. Larger commercial or multi-site deployments are phased to your schedule with minimal disruption."}}, {"@type": "Question", "name": "Which areas do you cover for PA system?", "acceptedAnswer": {"@type": "Answer", "text": "IRIS Fire & Security serves the entire Delhi NCR region including Gurgaon, Delhi, Noida, Greater Noida, Faridabad and Ghaziabad. We are a Gurgaon-based integrator with 14+ years of local experience."}}]}</script>
 </head>
 <body>
 
@@ -427,6 +437,12 @@ footer,.foot-col a,.foot-brand p{color:rgba(255,255,255,.72)}
     <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>Fast local response</h3><p>Gurgaon team with SLAs and genuine on-site support.</p><a class="more" href="solutions.html">Learn more &rarr;</a></div>
     <div class="svc reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2 2.6-2.6z"/></svg></div><h3>Honest relationships</h3><p>Transparent pricing, training and accountability.</p><a class="more" href="solutions.html">Learn more &rarr;</a></div>
   </div>
+</div></section>
+<section class="section faq-section"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">FAQ</span>
+    <h2>PA & Communication: common questions</h2>
+    <p>Answers to what Delhi NCR clients ask most about PA system.</p></div>
+  <div class="faq-list"><details class="faq-item"><summary>How much does PA system cost in Gurgaon / Delhi NCR?</summary><div class="faq-a"><p>The cost of PA system depends on site size, number of devices, brand and integration needs. IRIS Fire & Security provides a free on-site survey and a transparent, itemised quote for pa & communication across Gurgaon, Delhi, Noida and Faridabad — with no hidden charges.</p></div></details><details class="faq-item"><summary>Do you provide PA system and ongoing maintenance (AMC)?</summary><div class="faq-a"><p>Yes. We handle end-to-end pa & communication — design, supply, installation, commissioning and ongoing AMC. Our SLA-backed maintenance contracts keep your system operational with fast local response across Delhi NCR.</p></div></details><details class="faq-item"><summary>How long does pa & communication installation take?</summary><div class="faq-a"><p>Most residential and small-office PA system projects are completed within 1–3 days after survey and approval. Larger commercial or multi-site deployments are phased to your schedule with minimal disruption.</p></div></details><details class="faq-item"><summary>Which areas do you cover for PA system?</summary><div class="faq-a"><p>IRIS Fire & Security serves the entire Delhi NCR region including Gurgaon, Delhi, Noida, Greater Noida, Faridabad and Ghaziabad. We are a Gurgaon-based integrator with 14+ years of local experience.</p></div></details></div>
 </div></section>
 <section class="cta-band"><div class="container cta-inner">
   <div><h2>Need PA & Communication in Gurgaon or Delhi?</h2><p>Talk to our engineers for a free site assessment and a no-obligation quote.</p></div>

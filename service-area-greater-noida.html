@@ -162,6 +162,16 @@ header:not(.header-solid) .mega a{color:var(--ink-2)}
 .cta-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:64px 0;flex-wrap:wrap}
 .cta-inner h2{color:#fff;margin-bottom:8px;font-size:clamp(26px,3.4vw,40px)}
 .cta-inner p{color:rgba(255,255,255,.85);font-size:17px;max-width:520px}
+.faq-section{background:var(--cloud)}
+.faq-list{max-width:840px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.25s}
+.faq-item[open]{box-shadow:0 12px 30px rgba(11,95,204,.10);border-color:rgba(11,95,204,.3)}
+.faq-item summary{list-style:none;cursor:pointer;padding:20px 24px;font-family:var(--font-display);font-weight:600;font-size:17px;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-size:24px;color:var(--blue);font-weight:400;transition:.25s;flex-shrink:0}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-a{padding:0 24px 22px}
+.faq-a p{color:var(--slate);font-size:15.5px;line-height:1.75;margin:0}
 footer{padding:74px 0 0;background:var(--ink);position:relative;overflow:hidden}
 footer::before{content:"";position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(11,95,204,.28),transparent 70%);bottom:-180px;right:-160px}
 .foot-grid{display:grid;grid-template-columns:1.1fr repeat(4,1fr);gap:30px;padding-bottom:50px}

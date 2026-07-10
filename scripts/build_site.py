@@ -190,6 +190,16 @@ header:not(.header-solid) .mega a{color:var(--ink-2)}
 .cta-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:64px 0;flex-wrap:wrap}
 .cta-inner h2{color:#fff;margin-bottom:8px;font-size:clamp(26px,3.4vw,40px)}
 .cta-inner p{color:rgba(255,255,255,.85);font-size:17px;max-width:520px}
+.faq-section{background:var(--cloud)}
+.faq-list{max-width:840px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.25s}
+.faq-item[open]{box-shadow:0 12px 30px rgba(11,95,204,.10);border-color:rgba(11,95,204,.3)}
+.faq-item summary{list-style:none;cursor:pointer;padding:20px 24px;font-family:var(--font-display);font-weight:600;font-size:17px;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-size:24px;color:var(--blue);font-weight:400;transition:.25s;flex-shrink:0}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-a{padding:0 24px 22px}
+.faq-a p{color:var(--slate);font-size:15.5px;line-height:1.75;margin:0}
 footer{padding:74px 0 0;background:var(--ink);position:relative;overflow:hidden}
 footer::before{content:"";position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(11,95,204,.28),transparent 70%);bottom:-180px;right:-160px}
 .foot-grid{display:grid;grid-template-columns:1.1fr repeat(4,1fr);gap:30px;padding-bottom:50px}
@@ -1011,8 +1021,31 @@ SERVICE_SLUGS = [
 ]
 CITIES = [("gurgaon","Gurgaon"),("delhi","Delhi"),("noida","Noida"),("faridabad","Faridabad"),("greater-noida","Greater Noida")]
 
+def faq_ld(faqs):
+    import json as _j
+    items = [{"@type":"Question","name":q,
+              "acceptedAnswer":{"@type":"Answer","text":a}} for q,a in faqs]
+    data = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":items}
+    return '<script type="application/ld+json">' + _j.dumps(data) + '</script>'
+
+def service_faqs(title, kw, slug):
+    return [
+        (f"How much does {kw} cost in Gurgaon / Delhi NCR?",
+         f"The cost of {kw} depends on site size, number of devices, brand and integration needs. IRIS Fire & Security provides a free on-site survey and a transparent, itemised quote for {title.lower()} across Gurgaon, Delhi, Noida and Faridabad \u2014 with no hidden charges."),
+        (f"Do you provide {kw} and ongoing maintenance (AMC)?",
+         f"Yes. We handle end-to-end {title.lower()} \u2014 design, supply, installation, commissioning and ongoing AMC. Our SLA-backed maintenance contracts keep your system operational with fast local response across Delhi NCR."),
+        (f"How long does {title.lower()} installation take?",
+         f"Most residential and small-office {kw} projects are completed within 1\u20133 days after survey and approval. Larger commercial or multi-site deployments are phased to your schedule with minimal disruption."),
+        (f"Which areas do you cover for {kw}?",
+         f"IRIS Fire & Security serves the entire Delhi NCR region including Gurgaon, Delhi, Noida, Greater Noida, Faridabad and Ghaziabad. We are a Gurgaon-based integrator with 14+ years of local experience."),
+    ]
+
 def service_page(slug, title, intro, feats, kw):
     fl = "".join(f'<li>{I["check"]}{f}</li>' for f in feats)
+    faqs = service_faqs(title, kw, slug)
+    faq_html = "".join(
+        f'<details class="faq-item"><summary>{q}</summary><div class="faq-a"><p>{a}</p></div></details>'
+        for q, a in faqs)
     body = f"""
 <section class="page-hero"><div class="container">
   <div class="breadcrumb"><a href="index.html">Home</a> / <a href="solutions.html">Solutions</a> / {title}</div>
@@ -1043,6 +1076,12 @@ def service_page(slug, title, intro, feats, kw):
     {svc_card(I['wrench'],'Honest relationships','Transparent pricing, training and accountability.')}
   </div>
 </div></section>
+<section class="section faq-section"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">FAQ</span>
+    <h2>{title}: common questions</h2>
+    <p>Answers to what Delhi NCR clients ask most about {kw}.</p></div>
+  <div class="faq-list">{faq_html}</div>
+</div></section>
 <section class="cta-band"><div class="container cta-inner">
   <div><h2>Need {title} in Gurgaon or Delhi?</h2><p>Talk to our engineers for a free site assessment and a no-obligation quote.</p></div>
   <a href="https://wa.me/919996444222?text=Hi%20I%20need%20{title.replace(' ','%20')}%20in%20Gurgaon" class="btn btn-amber">{I['phone']} WhatsApp Us</a>
@@ -1050,7 +1089,7 @@ def service_page(slug, title, intro, feats, kw):
     return page(f"{title} in Gurgaon & Delhi NCR | IRIS Fire & Security",
                 f"{title} services in Gurgaon, Delhi, Noida & Faridabad. IRIS Fire & Security delivers turnkey {kw} with SLA-backed AMC. Get a free quote.",
                 body, "solutions.html",
-                json_ld=local_business_ld()+service_ld(title, intro),
+                json_ld=local_business_ld()+service_ld(title, intro)+faq_ld(faqs),
                 canonical=CANON+f"/{slug}")
 
 def city_page(slug, city):
