@@ -1186,11 +1186,11 @@ for slug, title, intro, feats, kw in SERVICE_SLUGS:
                       [img for (_,_,img,_,_) in SOLUTIONS])).get(slug, f"{ASSETS}/sol-cctv.webp")
     PAGES[f"{slug}.html"] = service_page(slug, title, intro, feats, kw, sol_img)
 for slug, city in CITIES:
-    city_img = {"gurgaon": "{ASSETS}/city-gurgaon.webp",
-               "delhi": "{ASSETS}/city-delhi.webp",
-               "noida": "{ASSETS}/city-noida.webp",
-               "faridabad": "{ASSETS}/city-faridabad.webp",
-               "greater-noida": "{ASSETS}/city-gnoida.webp"}.get(slug, "{ASSETS}/city-gurgaon.webp")
+    city_img = {"gurgaon": "assets/city-gurgaon.webp",
+               "delhi": "assets/city-delhi.webp",
+               "noida": "assets/city-noida.webp",
+               "faridabad": "assets/city-faridabad.webp",
+               "greater-noida": "assets/city-gnoida.webp"}.get(slug, "assets/city-gurgaon.webp")
     PAGES[f"service-area-{slug}.html"] = city_page(slug, city, city_img)
 
 if __name__ == "__main__":
