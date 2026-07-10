@@ -604,9 +604,9 @@ def page(title, desc, body, active="", transparent=False, json_ld="", canonical=
 def home():
     body = f"""
 <section class="hero-slider" id="top">
-  <div class="hero-slide active" style="background-image:url('{ASSETS}/hero-tower.png')"></div>
-  <div class="hero-slide" style="background-image:url('{ASSETS}/hero-soc.png')"></div>
-  <div class="hero-slide" style="background-image:url('{ASSETS}/tech-cctv.png')"></div>
+  <div class="hero-slide active" style="background-image:url('{ASSETS}/sol-cctv.webp')"></div>
+  <div class="hero-slide" style="background-image:url('{ASSETS}/sol-access.webp')"></div>
+  <div class="hero-slide" style="background-image:url('{ASSETS}/sol-fire.webp')"></div>
   <div class="container">
     <div class="hs-copy">
       <div class="hs-badge"><span class="dot"></span> 14+ years protecting Delhi NCR</div>
@@ -666,7 +666,7 @@ def home():
         {why_item('04','Honest relationships','Transparency, training and accountability &mdash; the values clients return for.')}
       </div>
     </div>
-    <div class="why-visual reveal d2"><img src="{ASSETS}/tech-cctv.png" alt="IRIS technician installing surveillance" /></div>
+    <div class="why-visual reveal d2"><img src="{ASSETS}/sol-auto.webp" alt="IRIS building automation & integration" loading="lazy" width="560" height="420" /></div>
   </div>
 </section>
 <section class="section process">
@@ -691,12 +691,12 @@ def home():
       {ind_card(f'{ASSETS}/ind-school.png','Education','Schools, colleges &amp; universities')}
       {ind_card(f'{ASSETS}/ind-hospital.png','Healthcare','Hospitals &amp; clinics')}
       {ind_card(f'{ASSETS}/ind-villa.png','Residential','Villas, apartments &amp; societies')}
-      {ind_card(f'{ASSETS}/hero-tower.png','Commercial','Offices, malls &amp; towers')}
-      {ind_card(f'{ASSETS}/hero-soc.png','Government','Departments &amp; public infra')}
-      {ind_card(f'{ASSETS}/tech-cctv.png','Retail &amp; Enterprise','Stores, warehouses &amp; HQs')}
-      {ind_card(f'{ASSETS}/ind-school.png','Banking &amp; Finance','Branches &amp; data centres')}
-      {ind_card(f'{ASSETS}/ind-hospital.png','Industrial &amp; Manufacturing','Plants, warehouses &amp; yards')}
-      {ind_card(f'{ASSETS}/ind-villa.png','Hospitality','Hotels, resorts &amp; banquets')}
+      {ind_card(f'{ASSETS}/city-gurgaon.webp','Commercial','Offices, malls &amp; towers')}
+      {ind_card(f'{ASSETS}/sol-pa.webp','Government','Departments &amp; public infra')}
+      {ind_card(f'{ASSETS}/sol-cctv.webp','Retail &amp; Enterprise','Stores, warehouses &amp; HQs')}
+      {ind_card(f'{ASSETS}/sol-net.webp','Banking &amp; Finance','Branches &amp; data centres')}
+      {ind_card(f'{ASSETS}/city-faridabad.webp','Industrial &amp; Manufacturing','Plants, warehouses &amp; yards')}
+      {ind_card(f'{ASSETS}/sol-av.webp','Hospitality','Hotels, resorts &amp; banquets')}
     </div>
     <div style="text-align:center;margin-top:48px" class="reveal"><a href="industries.html" class="btn btn-primary">Explore all industries</a></div>
   </div>
@@ -747,7 +747,7 @@ def step(n,t,d):
     return f'<div class="step reveal"><div class="n">{n}</div><h4>{t}</h4><p>{d}</p></div>'
 
 def ind_card(img,t,sub):
-    return f'<div class="ind reveal"><img src="{img}" alt="{t}" /><div class="cap"><h4>{t}</h4><span>{sub}</span></div></div>'
+    return f'<div class="ind reveal"><img src="{img}" alt="{t}" loading="lazy" /><div class="cap"><h4>{t}</h4><span>{sub}</span></div></div>'
 
 # ---- About ----
 def about():
@@ -758,7 +758,7 @@ def about():
   <p>&ldquo;IRIS Fire &amp; Security&rdquo; is a leading System Integrator in the electronic safety &amp; security sector &mdash; known for best-value products, reliable quality and satisfactory after-sale service based on 14+ years of field experience.</p>
 </div></section>
 <section class="section"><div class="container why-grid">
-  <div class="why-visual reveal"><img src="{ASSETS}/hero-soc.png" alt="IRIS security operations" /></div>
+  <div class="why-visual reveal"><img src="{ASSETS}/sol-pa.webp" alt="IRIS communication & PA systems" loading="lazy" width="560" height="420" /></div>
   <div class="why-copy reveal d2">
     <span class="eyebrow">Our story</span>
     <h2>Technology with a human touch</h2>
@@ -800,28 +800,28 @@ def val_card(ic,t,d):
 
 # ---- Solutions ----
 SOLUTIONS = [
- ("eye","Video Surveillance",f"{ASSETS}/tech-cctv.png",
+ ("eye","Video Surveillance",f"{ASSETS}/sol-cctv.webp",
   "Modern CCTV technology is turning video surveillance into one of the most valuable loss-prevention, remote-monitoring, security and management tools available today.",
   ["IP &amp; HD-TVI camera systems","AI analytics: intrusion, loitering, face &amp; number-plate recognition","Centralized remote monitoring &amp; mobile viewing","Video management &amp; evidence-grade storage"]),
- ("flame","Fire Alarm &amp; Detection",f"{ASSETS}/hero-soc.png",
+ ("flame","Fire Alarm &amp; Detection",f"{ASSETS}/sol-fire.webp",
   "IRIS delivers a wide range of fire alarm &amp; protection services across various applications including high-rise commercials, apartments and industrial sites.",
   ["Addressable &amp; conventional fire detection","Smoke, heat, beam &amp; flame detectors","Voice evacuation &amp; alarm panels","Compliance-ready design &amp; sign-off support"]),
- ("lock","Access Control &amp; Barrier Solutions",f"{ASSETS}/ind-villa.png",
+ ("lock","Access Control &amp; Barrier Solutions",f"{ASSETS}/sol-access.webp",
   "IRIS works with a wide range of manufacturers to deliver advanced access control solutions &mdash; from simple keypads to enterprise biometric platforms.",
   ["Biometric, card &amp; mobile-credential access","Turnstiles, boom barriers &amp; bollards","Visitor management &amp; attendance","Integration with CCTV &amp; fire for lock-down"]),
- ("home","Building / Home Automation",f"{ASSETS}/ind-villa.png",
+ ("home","Building / Home Automation",f"{ASSETS}/sol-auto.webp",
   "Home and building automation handles many tasks (HVAC, lights, blinds) that reduce energy consumption and improve the comfort level across your space.",
   ["Lighting, curtain &amp; climate control","Scene &amp; schedule automation","Energy monitoring &amp; savings","App &amp; voice control"]),
- ("speaker","Communication &amp; PA System",f"{ASSETS}/hero-soc.png",
+ ("speaker","Communication &amp; PA System",f"{ASSETS}/sol-pa.webp",
   "IRIS offers the most extensive range of communication systems in a variety of standard and digital designs to handle the needs of small to large businesses.",
   ["Public address &amp; background music","Emergency &amp; evacuation voice systems","Intercom &amp; nurse-call","IP-based paging across campuses"]),
- ("av","AV Solutions",f"{ASSETS}/ind-school.png",
+ ("av","AV Solutions",f"{ASSETS}/sol-av.webp",
   "IRIS offers Audio Visual Systems Integration (AVSI) solutions, services and support &mdash; fully customized as per client requirements.",
   ["Conference &amp; meeting-room systems","Digital signage &amp; displays","Lecture capture &amp; classrooms","Experience &amp; experience centres"]),
- ("net","IT / Networking Infrastructure",f"{ASSETS}/hero-tower.png",
+ ("net","IT / Networking Infrastructure",f"{ASSETS}/sol-net.webp",
   "A reliable network backbone is what keeps every security subsystem online. IRIS designs and installs structured cabling and active networking.",
   ["Structured cabling (Cat6/6A, fibre)","Network switches, Wi-Fi &amp; VLANs","PoE design for cameras &amp; access","Surveillance-grade storage &amp; NVRs"]),
- ("wrench","AMC &amp; Maintenance Services",f"{ASSETS}/tech-cctv.png",
+ ("wrench","AMC &amp; Maintenance Services",f"{ASSETS}/sol-amc.webp",
   "IRIS undertakes Annual Maintenance Contracts (AMCs) with service-level commitments (SLAs) for projects executed by us and those installed by others.",
   ["Standard &amp; Comprehensive AMCs","SLA-backed response &amp; uptime","Spares &amp; non-repairable replacement","End-user &amp; train-the-trainer programs"]),
 ]
@@ -834,7 +834,7 @@ def solutions():
         rows += f"""
 <div class="sol{rev} reveal">
   <div class="sol-inner">
-    <div class="visual"><img src="{img}" alt="{t}" /></div>
+    <div class="visual"><img src="{img}" alt="{t}" loading="lazy" /></div>
     <div class="copy">
       <span class="sol-index">SOLUTION {str(i+1).zfill(2)}</span>
       <div class="ic">{ic}</div>
@@ -867,11 +867,11 @@ INDUSTRIES = [
   'Patient-zone access, nurse-call integration, smoke detection and uninterrupted power for life-safety systems.'),
  (f"{ASSETS}/ind-villa.png",'Residential','Villas, apartments &amp; societies',
   'Gated-community surveillance, visitor management, home automation and boom barriers for apartments and villas.'),
- (f"{ASSETS}/hero-tower.png",'Commercial','Offices, malls &amp; towers',
+ (f"{ASSETS}/city-gurgaon.webp",'Commercial','Offices, malls &amp; towers',
   'Enterprise access, intelligent video, fire alarm and building automation for high-rise commercial assets.'),
- (f"{ASSETS}/hero-soc.png",'Government','Departments &amp; public infra',
+ (f"{ASSETS}/sol-pa.webp",'Government','Departments &amp; public infra',
   'Perimeter security, command-and-control rooms, PA and integrated monitoring for public-sector facilities.'),
- (f"{ASSETS}/tech-cctv.png",'Retail &amp; Enterprise','Stores, warehouses &amp; HQs',
+ (f"{ASSETS}/sol-cctv.webp",'Retail &amp; Enterprise','Stores, warehouses &amp; HQs',
   'Loss-prevention analytics, people counting, access and central monitoring across multiple sites.'),
 ]
 def industries():
@@ -898,12 +898,12 @@ def industries():
 
 # ---- Projects ----
 PROJECTS = [
- (f"{ASSETS}/hero-tower.png",'Commercial','High-Rise Commercial Tower','NCR','Integrated fire alarm, 200+ IP cameras and enterprise access control across a 30-floor Grade-A tower.',['Fire','CCTV','Access']),
+ (f"{ASSETS}/city-gurgaon.webp",'Commercial','High-Rise Commercial Tower','NCR','Integrated fire alarm, 200+ IP cameras and enterprise access control across a 30-floor Grade-A tower.',['Fire','CCTV','Access']),
  (f"{ASSETS}/ind-school.png",'Education','K-12 School Campus','Gurgaon','Campus-wide surveillance, PA for emergency drills and perimeter access for 1,800 students.',['CCTV','PA','Access']),
  (f"{ASSETS}/ind-hospital.png",'Healthcare','Multi-Speciality Hospital','Delhi','Patient-zone access, nurse-call integration and addressable fire detection across 8 floors.',['Access','Fire','AV']),
  (f"{ASSETS}/ind-villa.png",'Residential','Gated Villa Society','Gurgaon','Boom barriers, visitor management and home automation for 120 premium residences.',['Barriers','Automation','CCTV']),
- (f"{ASSETS}/hero-soc.png",'Government','Public Sector Command Room','NCR','Centralized monitoring room with video wall, PA and integrated alerting for a government facility.',['CCTV','PA','Network']),
- (f"{ASSETS}/tech-cctv.png",'Retail','Retail Chain (Multi-Site)','Delhi NCR','Loss-prevention analytics and central monitoring rolled out across 14 retail outlets.',['CCTV','Analytics','Network']),
+ (f"{ASSETS}/sol-pa.webp",'Government','Public Sector Command Room','NCR','Centralized monitoring room with video wall, PA and integrated alerting for a government facility.',['CCTV','PA','Network']),
+ (f"{ASSETS}/sol-cctv.webp",'Retail','Retail Chain (Multi-Site)','Delhi NCR','Loss-prevention analytics and central monitoring rolled out across 14 retail outlets.',['CCTV','Analytics','Network']),
 ]
 def projects():
     cards = "".join(
@@ -984,9 +984,9 @@ def contact():
 
 # ---- Blog ----
 POSTS = [
- (f"{ASSETS}/tech-cctv.png",'December 24, 2019','IP CCTV Camera Advantages','IP stands for Internet Protocol. IP CCTV cameras utilize the internet to transmit digital video &mdash; unlocking remote viewing, higher resolution and smarter analytics than analog systems.',"https://irisfireandsecurity.com/ip-cctv-camera-advantages/"),
+ (f"{ASSETS}/sol-cctv.webp",'December 24, 2019','IP CCTV Camera Advantages','IP stands for Internet Protocol. IP CCTV cameras utilize the internet to transmit digital video &mdash; unlocking remote viewing, higher resolution and smarter analytics than analog systems.',"https://irisfireandsecurity.com/ip-cctv-camera-advantages/"),
  (f"{ASSETS}/ind-school.png",'December 24, 2019','Benefits of CCTV Cameras in Schools','CCTV cameras are becoming increasingly used in schools to safeguard students, deter bullying and support staff &mdash; when deployed with the right privacy safeguards.',"https://irisfireandsecurity.com/nanotech-immersion-along-the-highway-2/"),
- (f"{ASSETS}/hero-tower.png",'December 24, 2019','How to Find the Best CCTV Camera for Home & Office','Choosing the right camera means matching resolution, lens, storage and night-vision to your space. We break down the essentials so you buy what you actually need.',"https://irisfireandsecurity.com/3-ways-to-position-your-business-growth/"),
+ (f"{ASSETS}/sol-cctv.webp",'December 24, 2019','How to Find the Best CCTV Camera for Home & Office','Choosing the right camera means matching resolution, lens, storage and night-vision to your space. We break down the essentials so you buy what you actually need.',"https://irisfireandsecurity.com/3-ways-to-position-your-business-growth/"),
 ]
 def blog():
     cards = "".join(
@@ -1062,7 +1062,7 @@ def service_faqs(title, kw, slug):
          f"IRIS Fire & Security serves the entire Delhi NCR region including Gurgaon, Delhi, Noida, Greater Noida, Faridabad and Ghaziabad. We are a Gurgaon-based integrator with 14+ years of local experience."),
     ]
 
-def service_page(slug, title, intro, feats, kw):
+def service_page(slug, title, intro, feats, kw, img):
     fl = "".join(f'<li>{I["check"]}{f}</li>' for f in feats)
     faqs = service_faqs(title, kw, slug)
     faq_html = "".join(
@@ -1085,7 +1085,7 @@ def service_page(slug, title, intro, feats, kw):
       <a href="solutions.html" class="btn btn-ghost">All solutions</a>
     </div>
   </div>
-  <div class="visual"><img src="{ASSETS}/tech-cctv.png" alt="{title} Gurgaon" /></div>
+  <div class="visual"><img src="{img}" alt="{title} in Gurgaon & Delhi NCR" loading="lazy" width="560" height="420" /></div>
 </div></section>
 <section class="section services"><div class="container">
   <div class="section-head reveal"><span class="eyebrow">Why IRIS in Delhi NCR</span>
@@ -1114,7 +1114,7 @@ def service_page(slug, title, intro, feats, kw):
                 json_ld=local_business_ld()+service_ld(title, intro)+faq_ld(faqs),
                 canonical=CANON+f"/{slug}")
 
-def city_page(slug, city):
+def city_page(slug, city, img):
     body = f"""
 <section class="page-hero"><div class="container">
   <div class="breadcrumb"><a href="index.html">Home</a> / Service Areas / {city}</div>
@@ -1133,7 +1133,7 @@ def city_page(slug, city):
       {why_item('04','Fast response','Local team, accountable and reachable when it matters.')}
     </div>
   </div>
-  <div class="why-visual reveal d2"><img src="{ASSETS}/hero-tower.png" alt="Security systems {city}" /></div>
+  <div class="why-visual reveal d2"><img src="{img}" alt="Fire & security systems in {city}" loading="lazy" width="560" height="420" /></div>
 </div></section>
 <section class="section services"><div class="container">
   <div class="section-head reveal"><span class="eyebrow">Our solutions in {city}</span>
@@ -1182,9 +1182,16 @@ PAGES = {
 }
 # SEO landing pages
 for slug, title, intro, feats, kw in SERVICE_SLUGS:
-    PAGES[f"{slug}.html"] = service_page(slug, title, intro, feats, kw)
+    sol_img = dict(zip([s for s,_,_,_,_ in SERVICE_SLUGS],
+                      [img for (_,_,img,_,_) in SOLUTIONS])).get(slug, f"{ASSETS}/sol-cctv.webp")
+    PAGES[f"{slug}.html"] = service_page(slug, title, intro, feats, kw, sol_img)
 for slug, city in CITIES:
-    PAGES[f"service-area-{slug}.html"] = city_page(slug, city)
+    city_img = {"gurgaon": "{ASSETS}/city-gurgaon.webp",
+               "delhi": "{ASSETS}/city-delhi.webp",
+               "noida": "{ASSETS}/city-noida.webp",
+               "faridabad": "{ASSETS}/city-faridabad.webp",
+               "greater-noida": "{ASSETS}/city-gnoida.webp"}.get(slug, "{ASSETS}/city-gurgaon.webp")
+    PAGES[f"service-area-{slug}.html"] = city_page(slug, city, city_img)
 
 if __name__ == "__main__":
     for name, html in PAGES.items():
