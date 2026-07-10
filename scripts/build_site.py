@@ -10,6 +10,34 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS = "assets"
+CANON = "https://irisfireandsecurity.vercel.app"
+
+# ---- SEO: local business structured data (injected on every page) ----
+def local_business_ld():
+    return """<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"IRIS Fire & Security",
+  "image":"__ASSETS__/logo.png",
+  "@id":"__CANON__/#business",
+  "url":"__CANON__/",
+  "telephone":"+91 99964 44222",
+  "email":"iris.gurgaon@gmail.com",
+  "priceRange":"$$",
+  "address":{"@type":"PostalAddress","addressLocality":"Gurgaon","addressRegion":"Haryana","addressCountry":"IN"},
+  "areaServed":["Gurgaon","Gurugram","Delhi","Noida","Faridabad","Ghaziabad","Greater Noida"],
+  "geo":{"@type":"GeoCoordinates","latitude":28.4595,"longitude":77.0266},
+  "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:30","closes":"18:30"},
+  "sameAs":["https://www.facebook.com/","https://www.instagram.com/","https://www.linkedin.com/"]
+}</script>""".replace("__ASSETS__", CANON + "/assets").replace("__CANON__", CANON)
+
+def service_ld(name, desc):
+    return """<script type="application/ld+json">{
+  "@context":"https://schema.org","@type":"Service",
+  "serviceType":"__NAME__","description":"__DESC__",
+  "provider":{"@id":"__CANON__/#business"},
+  "areaServed":["Gurgaon","Delhi","Noida","Faridabad"]
+}</script>""".replace("__NAME__", name).replace("__DESC__", desc).replace("__CANON__", CANON)
 
 # ----------------------------------------------------------------------------
 #  SHARED DESIGN SYSTEM (inlined into every page)
@@ -72,15 +100,14 @@ header:not(.header-solid) .menu-btn span{background:#fff}
 .has-mega{position:relative}
 .nav-links .has-mega > a{display:inline-flex;align-items:center;gap:6px}
 .nav-links .has-mega > a::after{content:"\25BE";font-size:10px;margin-left:2px;width:auto;height:auto;background:none;position:static}
-.mega{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(8px);width:min(720px,86vw);background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(11,95,204,.18);padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:6px;opacity:0;visibility:hidden;transition:.22s;z-index:200}
-.has-mega:hover .mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
-.mega::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
-.mega a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;color:var(--ink-2);font-size:14.5px;font-weight:500;transition:.18s}
+.mega{position:absolute;top:100%;left:0;width:300px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 20px 50px rgba(11,95,204,.16);padding:10px;display:flex;flex-direction:column;gap:3px;opacity:0;visibility:hidden;transform:translateY(10px);transition:.2s ease;z-index:300}
+.has-mega:hover .mega{opacity:1;visibility:visible;transform:translateY(0)}
+.mega::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
+.mega a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:11px;color:var(--ink-2);font-size:14px;font-weight:500;transition:.16s}
 .mega a:hover{background:var(--cloud);color:var(--blue)}
-.mega a .mi{width:38px;height:38px;border-radius:10px;background:linear-gradient(150deg,rgba(11,95,204,.12),rgba(56,189,248,.12));color:var(--blue);display:grid;place-items:center;flex-shrink:0}
-.mega a .mi svg{width:20px;height:20px}
-.mega a b{font-family:var(--font-display);font-size:14.5px;display:block;color:var(--ink)}
-.mega a small{font-size:12px;color:var(--slate)}
+.mega a .mi{width:34px;height:34px;border-radius:9px;background:linear-gradient(150deg,rgba(11,95,204,.12),rgba(56,189,248,.12));color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.mega a .mi svg{width:18px;height:18px}
+.mega a b{font-family:var(--font-display);font-size:14px;display:block;color:var(--ink);line-height:1.2}
 header:not(.header-solid) .mega{background:#fff}
 header:not(.header-solid) .mega a{color:var(--ink-2)}
 .header-solid .brand .mono{display:block}
@@ -374,7 +401,7 @@ def header(active="", transparent=False):
             ("Projects","projects.html"),("Contact","contact.html"),("Blog","blog.html")]
     # mega menu for Solutions (built from SOLUTIONS list)
     mega_items = "".join(
-        f'<a href="solutions.html"><span class="mi">{ic}</span><span><b>{t}</b><small>{SOLUTIONS[i][3][:42]}…</small></span></a>'
+        f'<a href="solutions.html"><span class="mi">{ic}</span><b>{t}</b></a>'
         for i,(ic,t,img,lead,feats) in enumerate(SOLUTIONS))
     def navlink(t, u):
         cls = ' class="active"' if u == active else ''
@@ -419,11 +446,11 @@ def footer():
     </div>
     <div class="foot-col">
       <h5>Solutions</h5>
-      <a href="solutions.html">Video Surveillance</a>
-      <a href="solutions.html">Fire Alarm Systems</a>
-      <a href="solutions.html">Access Control</a>
-      <a href="solutions.html">Home Automation</a>
-      <a href="solutions.html">AMC &amp; Maintenance</a>
+      <a href="cctv-surveillance.html">Video Surveillance</a>
+      <a href="fire-alarm-system.html">Fire Alarm Systems</a>
+      <a href="access-control-system.html">Access Control</a>
+      <a href="building-automation.html">Home Automation</a>
+      <a href="amc-services.html">AMC &amp; Maintenance</a>
     </div>
     <div class="foot-col">
       <h5>Company</h5>
@@ -473,7 +500,8 @@ dots.forEach(d=>d.addEventListener('click',()=>{go(+d.dataset.i);clearInterval(t
 play();}
 </script>"""
 
-def page(title, desc, body, active="", transparent=False):
+def page(title, desc, body, active="", transparent=False, json_ld="", canonical=""):
+    cano = f'<link rel="canonical" href="{canonical}" />' if canonical else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -481,11 +509,17 @@ def page(title, desc, body, active="", transparent=False):
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title}</title>
 <meta name="description" content="{desc}" />
+{cano}
+<meta property="og:title" content="{title}" />
+<meta property="og:description" content="{desc}" />
+<meta property="og:type" content="website" />
+<meta name="robots" content="index,follow" />
 <link rel="icon" href="{ASSETS}/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
 <style>{CSS}</style>
+{json_ld}
 </head>
 <body>
 {header(active, transparent)}
@@ -633,7 +667,7 @@ def home():
 </div></section>"""
     return page("IRIS Fire & Security — Mission-Critical Fire & Security Solutions | Delhi NCR",
                 "IRIS Fire & Security is a leading system integrator in electronic safety & security. Turnkey fire alarm, CCTV, access control, automation & AMC across Delhi NCR.",
-                body, "index.html", transparent=True)
+                body, "index.html", transparent=True, json_ld=local_business_ld(), canonical=CANON+"/")
 
 def svc_card(ic,title,desc):
     return f'<div class="svc reveal"><div class="ic">{ic}</div><h3>{title}</h3><p>{desc}</p><a class="more" href="solutions.html">Learn more &rarr;</a></div>'
@@ -691,7 +725,7 @@ def about():
 </div></section>"""
     return page("About IRIS Fire & Security — Leading System Integrator | Delhi NCR",
                 "IRIS Fire & Security is a Delhi NCR system integrator with 14+ years of experience in electronic safety & security, built on trust, transparency and accountability.",
-                body, "about.html")
+                body, "about.html", json_ld=local_business_ld(), canonical=CANON+"/about")
 
 def val_card(ic,t,d):
     return f'<div class="val reveal"><div class="ic">{ic}</div><h4>{t}</h4><p>{d}</p></div>'
@@ -755,7 +789,7 @@ def solutions():
 </div></section>"""
     return page("Solutions — IRIS Fire & Security | CCTV, Fire, Access Control, Automation",
                 "Explore IRIS Fire & Security's eight integrated solutions: video surveillance, fire alarm, access control, automation, PA, AV, networking and AMC across Delhi NCR.",
-                body, "solutions.html")
+                body, "solutions.html", json_ld=local_business_ld(), canonical=CANON+"/solutions")
 
 # ---- Industries ----
 INDUSTRIES = [
@@ -792,7 +826,7 @@ def industries():
 </div></section>"""
     return page("Industries Served — IRIS Fire & Security | Education to Government",
                 "IRIS Fire & Security serves education, healthcare, residential, commercial, government and retail sectors across Delhi NCR with tailored fire & security systems.",
-                body, "industries.html")
+                body, "industries.html", json_ld=local_business_ld(), canonical=CANON+"/industries")
 
 # ---- Projects ----
 PROJECTS = [
@@ -825,7 +859,7 @@ def projects():
 </div></section>"""
     return page("Projects & Case Studies — IRIS Fire & Security | Delhi NCR Deployments",
                 "Explore IRIS Fire & Security project case studies across commercial, education, healthcare, residential, government and retail sectors in Delhi NCR.",
-                body, "projects.html")
+                body, "projects.html", json_ld=local_business_ld(), canonical=CANON+"/projects")
 
 # ---- Contact ----
 def contact():
@@ -878,7 +912,7 @@ def contact():
 </div></section>"""
     return page("Contact IRIS Fire & Security — Free Assessment | Gurgaon, Delhi NCR",
                 "Contact IRIS Fire & Security in Gurgaon for a free site assessment and quote. Call/WhatsApp +91 99964 44222 or email iris.gurgaon@gmail.com.",
-                body, "contact.html")
+                body, "contact.html", json_ld=local_business_ld(), canonical=CANON+"/contact")
 
 # ---- Blog ----
 POSTS = [
@@ -908,7 +942,134 @@ def blog():
 </div></section>"""
     return page("Blog — IRIS Fire & Security | CCTV, Fire & Security Insights",
                 "Read IRIS Fire & Security blog insights on IP CCTV cameras, school safety, and choosing the right CCTV for home and office.",
-                body, "blog.html")
+                body, "blog.html", json_ld=local_business_ld(), canonical=CANON+"/blog")
+
+# ----------------------------------------------------------------------------\
+#  SEO LANDING PAGES
+# ----------------------------------------------------------------------------\
+SERVICE_SLUGS = [
+    ("cctv-surveillance", "Video Surveillance & CCTV", "IP & AI CCTV camera installation, remote monitoring and video analytics.",
+     ["IP & HD-TVI camera systems","AI analytics: intrusion, loitering, face & number-plate","Centralized remote monitoring & mobile viewing","Video management & evidence-grade storage"],
+     "CCTV installation"),
+    ("fire-alarm-system", "Fire Alarm & Detection", "Intelligent fire detection and alarm systems for high-rises, commercial and industrial sites.",
+     ["Addressable & conventional fire detection","Smoke, heat, beam & flame detectors","Voice evacuation & alarm panels","Compliance-ready design & sign-off support"],
+     "fire alarm system"),
+    ("access-control-system", "Access Control & Barriers", "Biometric, card and boom-barrier access control from single-door to enterprise.",
+     ["Biometric, card & mobile-credential access","Turnstiles, boom barriers & bollards","Visitor management & attendance","Integration with CCTV & fire for lock-down"],
+     "access control system"),
+    ("building-automation", "Building & Home Automation", "HVAC, lighting and blind control that cuts energy use and lifts comfort.",
+     ["Lighting, curtain & climate control","Scene & schedule automation","Energy monitoring & savings","App & voice control"],
+     "building automation"),
+    ("pa-system", "PA & Communication", "Public address, emergency voice evacuation and intercom systems.",
+     ["Public address & background music","Emergency & evacuation voice systems","Intercom & nurse-call","IP-based paging across campuses"],
+     "PA system"),
+    ("av-solutions", "AV Solutions", "Audio-visual integration for conference, retail and experience environments.",
+     ["Conference & meeting-room systems","Digital signage & displays","Lecture capture & classrooms","Experience & experience centres"],
+     "AV solutions"),
+    ("it-networking", "IT & Networking", "Structured cabling and active networking that keeps every subsystem online.",
+     ["Structured cabling (Cat6/6A, fibre)","Network switches, Wi-Fi & VLANs","PoE design for cameras & access","Surveillance-grade storage & NVRs"],
+     "networking"),
+    ("amc-services", "AMC & Maintenance", "Annual maintenance contracts with SLA-backed response and uptime.",
+     ["Standard & Comprehensive AMCs","SLA-backed response & uptime","Spares & non-repairable replacement","End-user & train-the-trainer programs"],
+     "AMC"),
+]
+CITIES = [("gurgaon","Gurgaon"),("delhi","Delhi"),("noida","Noida"),("faridabad","Faridabad"),("greater-noida","Greater Noida")]
+
+def service_page(slug, title, intro, feats, kw):
+    fl = "".join(f'<li>{I["check"]}{f}</li>' for f in feats)
+    body = f"""
+<section class="page-hero"><div class="container">
+  <div class="breadcrumb"><a href="index.html">Home</a> / <a href="solutions.html">Solutions</a> / {title}</div>
+  <h1>{title} in <span style="color:var(--blue)">Gurgaon &amp; Delhi NCR</span></h1>
+  <p>Professional {kw} services by IRIS Fire &amp; Security &mdash; a Gurgaon-based system integrator delivering turnkey {title.lower()} for homes, businesses and institutions across Delhi NCR.</p>
+</div></section>
+<section class="section"><div class="sol-inner">
+  <div class="copy">
+    <span class="sol-index">SERVICE</span>
+    <h2>{title} you can rely on</h2>
+    <p class="lead">{intro} Whether you need a single camera or a fully integrated, monitored life-safety ecosystem, our certified engineers design, install and maintain it end to end.</p>
+    <ul class="feat">{fl}</ul>
+    <div style="margin-top:26px;display:flex;gap:14px;flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary">{I['chat']} Get a free quote</a>
+      <a href="solutions.html" class="btn btn-ghost">All solutions</a>
+    </div>
+  </div>
+  <div class="visual"><img src="{ASSETS}/tech-cctv.png" alt="{title} Gurgaon" /></div>
+</div></section>
+<section class="section services"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Why IRIS in Delhi NCR</span>
+    <h2>Local, fast and accountable</h2>
+    <p>Gurgaon-based team, 80+ active AMCs and SLA-backed maintenance &mdash; the practical advantages of a local {kw} partner.</p></div>
+  <div class="svc-grid">
+    {svc_card(I['eye'],'Turnkey delivery','Design, supply, install & commission &mdash; one accountable partner.')}
+    {svc_card(I['flame'],'Investment protection','Scalable systems engineered to grow with your building.')}
+    {svc_card(I['lock'],'Fast local response','Gurgaon team with SLAs and genuine on-site support.')}
+    {svc_card(I['wrench'],'Honest relationships','Transparent pricing, training and accountability.')}
+  </div>
+</div></section>
+<section class="cta-band"><div class="container cta-inner">
+  <div><h2>Need {title} in Gurgaon or Delhi?</h2><p>Talk to our engineers for a free site assessment and a no-obligation quote.</p></div>
+  <a href="https://wa.me/919996444222?text=Hi%20I%20need%20{title.replace(' ','%20')}%20in%20Gurgaon" class="btn btn-amber">{I['phone']} WhatsApp Us</a>
+</div></section>"""
+    return page(f"{title} in Gurgaon & Delhi NCR | IRIS Fire & Security",
+                f"{title} services in Gurgaon, Delhi, Noida & Faridabad. IRIS Fire & Security delivers turnkey {kw} with SLA-backed AMC. Get a free quote.",
+                body, "solutions.html",
+                json_ld=local_business_ld()+service_ld(title, intro),
+                canonical=CANON+f"/{slug}")
+
+def city_page(slug, city):
+    body = f"""
+<section class="page-hero"><div class="container">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Service Areas / {city}</div>
+  <h1>Fire &amp; Security Systems in <span style="color:var(--blue)">{city}</span></h1>
+  <p>IRIS Fire &amp; Security provides CCTV, fire alarm, access control, automation and AMC services across {city} and the wider Delhi NCR &mdash; engineered and serviced locally.</p>
+</div></section>
+<section class="section"><div class="container why-grid">
+  <div class="why-copy reveal">
+    <span class="eyebrow">Coverage in {city}</span>
+    <h2>Safety &amp; security, delivered locally in {city}</h2>
+    <p style="color:var(--slate);font-size:17px">From homes and apartments to offices, schools, hospitals, factories and retail &mdash; IRIS delivers best-value, service-backed protection in {city} with the speed of a local team.</p>
+    <div class="why-list">
+      {why_item('01','On-site survey','We assess your {city} site before recommending anything.')}
+      {why_item('02','Turnkey install','Supply, install & commission by certified engineers.')}
+      {why_item('03','SLA-backed AMC','80+ active maintenance contracts across Delhi NCR.')}
+      {why_item('04','Fast response','Local team, accountable and reachable when it matters.')}
+    </div>
+  </div>
+  <div class="why-visual reveal d2"><img src="{ASSETS}/hero-tower.png" alt="Security systems {city}" /></div>
+</div></section>
+<section class="section services"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Our solutions in {city}</span>
+    <h2>Eight integrated solutions, one partner</h2>
+    <p>Every system delivered turnkey and designed to integrate into a single, monitored platform.</p></div>
+  <div class="svc-grid">
+    {svc_card(I['eye'],'Video Surveillance','IP & AI CCTV with remote monitoring.')}
+    {svc_card(I['flame'],'Fire Alarm & Detection','Intelligent detection & alarm.')}
+    {svc_card(I['lock'],'Access Control & Barriers','Biometric, card & boom barriers.')}
+    {svc_card(I['home'],'Building / Home Automation','HVAC, lighting & blinds control.')}
+    {svc_card(I['speaker'],'PA & Communication','Public address & emergency comms.')}
+    {svc_card(I['av'],'AV Solutions','Audio-visual integration.')}
+    {svc_card(I['net'],'IT / Networking','Structured cabling & network backbone.')}
+    {svc_card(I['wrench'],'AMC & Maintenance','SLA-backed upkeep & training.')}
+  </div>
+</div></section>
+<section class="cta-band"><div class="container cta-inner">
+  <div><h2>Protect your {city} property</h2><p>Free assessment and a no-obligation quote tailored to your site.</p></div>
+  <a href="contact.html" class="btn btn-amber">{I['phone']} WhatsApp Us</a>
+</div></section>"""
+    return page(f"Fire & Security Systems in {city} | IRIS Fire & Security",
+                f"IRIS Fire & Security delivers CCTV, fire alarm, access control, automation and AMC in {city}, Delhi NCR. Local, SLA-backed, best-value. Free quote.",
+                body, "industries.html",
+                json_ld=local_business_ld(),
+                canonical=CANON+f"/service-area-{slug}")
+
+def build_sitemap(extra_pages):
+    urls = ["", "about", "solutions", "industries", "projects", "contact", "blog"] + extra_pages
+    locs = "\n".join(f"  <url><loc>{CANON}/{u}</loc><changefreq>weekly</changefreq><priority>{'1.0' if u=='' else '0.8'}</priority></url>" for u in urls)
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{locs}
+</urlset>"""
 
 # ----------------------------------------------------------------------------
 #  BUILD
@@ -922,11 +1083,22 @@ PAGES = {
  "contact.html": contact(),
  "blog.html": blog(),
 }
+# SEO landing pages
+for slug, title, intro, feats, kw in SERVICE_SLUGS:
+    PAGES[f"{slug}.html"] = service_page(slug, title, intro, feats, kw)
+for slug, city in CITIES:
+    PAGES[f"service-area-{slug}.html"] = city_page(slug, city)
 
 if __name__ == "__main__":
     for name, html in PAGES.items():
         out = os.path.join(ROOT, name)
         with open(out, "w", encoding="utf-8") as f:
             f.write(html)
-        print(f"  wrote {name:18s} {len(html):>7,} bytes")
-    print(f"\nDone. {len(PAGES)} pages in {ROOT}")
+        print(f"  wrote {name:24s} {len(html):>7,} bytes")
+    # sitemap
+    extra = [f"{s}.html" for s,_,_,_,_ in SERVICE_SLUGS] + [f"service-area-{s}.html" for s,_ in CITIES]
+    with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write(build_sitemap(extra))
+    with open(os.path.join(ROOT, "robots.txt"), "w", encoding="utf-8") as f:
+        f.write(f"User-agent: *\nAllow: /\nSitemap: {CANON}/sitemap.xml\n")
+    print(f"\nDone. {len(PAGES)} pages + sitemap.xml + robots.txt in {ROOT}")

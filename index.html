@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>IRIS Fire & Security — Mission-Critical Fire & Security Solutions | Delhi NCR</title>
 <meta name="description" content="IRIS Fire & Security is a leading system integrator in electronic safety & security. Turnkey fire alarm, CCTV, access control, automation & AMC across Delhi NCR." />
+<link rel="canonical" href="https://irisfireandsecurity.vercel.app/" />
+<meta property="og:title" content="IRIS Fire & Security — Mission-Critical Fire & Security Solutions | Delhi NCR" />
+<meta property="og:description" content="IRIS Fire & Security is a leading system integrator in electronic safety & security. Turnkey fire alarm, CCTV, access control, automation & AMC across Delhi NCR." />
+<meta property="og:type" content="website" />
+<meta name="robots" content="index,follow" />
 <link rel="icon" href="assets/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -67,15 +72,14 @@ header:not(.header-solid) .menu-btn span{background:#fff}
 .has-mega{position:relative}
 .nav-links .has-mega > a{display:inline-flex;align-items:center;gap:6px}
 .nav-links .has-mega > a::after{content:"\25BE";font-size:10px;margin-left:2px;width:auto;height:auto;background:none;position:static}
-.mega{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(8px);width:min(720px,86vw);background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(11,95,204,.18);padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:6px;opacity:0;visibility:hidden;transition:.22s;z-index:200}
-.has-mega:hover .mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
-.mega::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
-.mega a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;color:var(--ink-2);font-size:14.5px;font-weight:500;transition:.18s}
+.mega{position:absolute;top:100%;left:0;width:300px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 20px 50px rgba(11,95,204,.16);padding:10px;display:flex;flex-direction:column;gap:3px;opacity:0;visibility:hidden;transform:translateY(10px);transition:.2s ease;z-index:300}
+.has-mega:hover .mega{opacity:1;visibility:visible;transform:translateY(0)}
+.mega::before{content:"";position:absolute;top:-16px;left:0;right:0;height:16px}
+.mega a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:11px;color:var(--ink-2);font-size:14px;font-weight:500;transition:.16s}
 .mega a:hover{background:var(--cloud);color:var(--blue)}
-.mega a .mi{width:38px;height:38px;border-radius:10px;background:linear-gradient(150deg,rgba(11,95,204,.12),rgba(56,189,248,.12));color:var(--blue);display:grid;place-items:center;flex-shrink:0}
-.mega a .mi svg{width:20px;height:20px}
-.mega a b{font-family:var(--font-display);font-size:14.5px;display:block;color:var(--ink)}
-.mega a small{font-size:12px;color:var(--slate)}
+.mega a .mi{width:34px;height:34px;border-radius:9px;background:linear-gradient(150deg,rgba(11,95,204,.12),rgba(56,189,248,.12));color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.mega a .mi svg{width:18px;height:18px}
+.mega a b{font-family:var(--font-display);font-size:14px;display:block;color:var(--ink);line-height:1.2}
 header:not(.header-solid) .mega{background:#fff}
 header:not(.header-solid) .mega a{color:var(--ink-2)}
 .header-solid .brand .mono{display:block}
@@ -338,6 +342,22 @@ footer{background:var(--ink);color:rgba(255,255,255,.75);padding:70px 0 0}
   .half{grid-template-columns:1fr}
 }
 </style>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"IRIS Fire & Security",
+  "image":"https://irisfireandsecurity.vercel.app/assets/logo.png",
+  "@id":"https://irisfireandsecurity.vercel.app/#business",
+  "url":"https://irisfireandsecurity.vercel.app/",
+  "telephone":"+91 99964 44222",
+  "email":"iris.gurgaon@gmail.com",
+  "priceRange":"$$",
+  "address":{"@type":"PostalAddress","addressLocality":"Gurgaon","addressRegion":"Haryana","addressCountry":"IN"},
+  "areaServed":["Gurgaon","Gurugram","Delhi","Noida","Faridabad","Ghaziabad","Greater Noida"],
+  "geo":{"@type":"GeoCoordinates","latitude":28.4595,"longitude":77.0266},
+  "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:30","closes":"18:30"},
+  "sameAs":["https://www.facebook.com/","https://www.instagram.com/","https://www.linkedin.com/"]
+}</script>
 </head>
 <body>
 
@@ -351,7 +371,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.75);padding:70px 0 0}
       <a href="index.html" class="active">Home</a><a href="about.html">About</a><a href="industries.html">Industries</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a>
       <div class="has-mega">
         <a href="solutions.html">Solutions</a>
-        <div class="mega"><a href="solutions.html"><span class="mi">eye</span><span><b>Video Surveillance</b><small>Modern CCTV technology is turning video su…</small></span></a><a href="solutions.html"><span class="mi">flame</span><span><b>Fire Alarm &amp; Detection</b><small>IRIS delivers a wide range of fire alarm &…</small></span></a><a href="solutions.html"><span class="mi">lock</span><span><b>Access Control &amp; Barrier Solutions</b><small>IRIS works with a wide range of manufactur…</small></span></a><a href="solutions.html"><span class="mi">home</span><span><b>Building / Home Automation</b><small>Home and building automation handles many …</small></span></a><a href="solutions.html"><span class="mi">speaker</span><span><b>Communication &amp; PA System</b><small>IRIS offers the most extensive range of co…</small></span></a><a href="solutions.html"><span class="mi">av</span><span><b>AV Solutions</b><small>IRIS offers Audio Visual Systems Integrati…</small></span></a><a href="solutions.html"><span class="mi">net</span><span><b>IT / Networking Infrastructure</b><small>A reliable network backbone is what keeps …</small></span></a><a href="solutions.html"><span class="mi">wrench</span><span><b>AMC &amp; Maintenance Services</b><small>IRIS undertakes Annual Maintenance Contrac…</small></span></a></div>
+        <div class="mega"><a href="solutions.html"><span class="mi">eye</span><b>Video Surveillance</b></a><a href="solutions.html"><span class="mi">flame</span><b>Fire Alarm &amp; Detection</b></a><a href="solutions.html"><span class="mi">lock</span><b>Access Control &amp; Barrier Solutions</b></a><a href="solutions.html"><span class="mi">home</span><b>Building / Home Automation</b></a><a href="solutions.html"><span class="mi">speaker</span><b>Communication &amp; PA System</b></a><a href="solutions.html"><span class="mi">av</span><b>AV Solutions</b></a><a href="solutions.html"><span class="mi">net</span><b>IT / Networking Infrastructure</b></a><a href="solutions.html"><span class="mi">wrench</span><b>AMC &amp; Maintenance Services</b></a></div>
       </div>
     </nav>
     <div class="nav-cta">
@@ -504,11 +524,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.75);padding:70px 0 0}
     </div>
     <div class="foot-col">
       <h5>Solutions</h5>
-      <a href="solutions.html">Video Surveillance</a>
-      <a href="solutions.html">Fire Alarm Systems</a>
-      <a href="solutions.html">Access Control</a>
-      <a href="solutions.html">Home Automation</a>
-      <a href="solutions.html">AMC &amp; Maintenance</a>
+      <a href="cctv-surveillance.html">Video Surveillance</a>
+      <a href="fire-alarm-system.html">Fire Alarm Systems</a>
+      <a href="access-control-system.html">Access Control</a>
+      <a href="building-automation.html">Home Automation</a>
+      <a href="amc-services.html">AMC &amp; Maintenance</a>
     </div>
     <div class="foot-col">
       <h5>Company</h5>
