@@ -92,7 +92,6 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.3s}
 .nav-links.on-dark a:hover,.nav-links.on-dark a.active{color:#fff}
 header:not(.header-solid) .nav-cta .btn-ghost{background:rgba(10,20,38,.28);border-color:rgba(255,255,255,.4);color:#fff}
 header:not(.header-solid) .nav-cta .btn-ghost:hover{background:rgba(10,20,38,.42);border-color:var(--azure);color:#fff}
-header:not(.header-solid) .brand .logo{filter:brightness(0) invert(1)}
 header:not(.header-solid) .menu-btn span{background:#fff}
 .nav-cta{display:flex;align-items:center;gap:14px}
 .header-solid{background:rgba(255,255,255,.97);backdrop-filter:blur(16px);box-shadow:0 4px 24px rgba(10,20,38,.10);border-bottom:1px solid var(--line)}
@@ -191,8 +190,18 @@ header:not(.header-solid) .mega a{color:var(--ink-2)}
 .cta-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:40px;padding:64px 0;flex-wrap:wrap}
 .cta-inner h2{color:#fff;margin-bottom:8px;font-size:clamp(26px,3.4vw,40px)}
 .cta-inner p{color:rgba(255,255,255,.85);font-size:17px;max-width:520px}
-footer{background:var(--ink);color:rgba(255,255,255,.75);padding:70px 0 0}
-.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:50px}
+footer{padding:74px 0 0;background:var(--ink);position:relative;overflow:hidden}
+footer::before{content:"";position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(11,95,204,.28),transparent 70%);bottom:-180px;right:-160px}
+.foot-grid{display:grid;grid-template-columns:1.1fr repeat(4,1fr);gap:30px;padding-bottom:50px}
+footer,.foot-col a,.foot-brand p{color:rgba(255,255,255,.72)}
+.foot-brand .foot-contact{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+.foot-brand .row{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.8)}
+.foot-brand .row svg{width:17px;height:17px;color:var(--azure);flex-shrink:0}
+.foot-brand .row a:hover{color:var(--azure)}
+.foot-seo{padding:30px 0;border-top:1px solid rgba(255,255,255,.1);position:relative;z-index:1}
+.foot-seo p{font-size:12.5px;line-height:1.9;color:rgba(255,255,255,.42)}
+.foot-seo a{color:rgba(255,255,255,.6);text-decoration:none}
+.foot-seo a:hover{color:var(--azure)}
 .foot-brand img{height:40px;margin-bottom:18px}
 .foot-brand p{font-size:14.5px;max-width:300px;color:rgba(255,255,255,.6)}
 .foot-col h5{font-family:var(--font-display);color:#fff;font-size:15px;letter-spacing:.04em;margin-bottom:18px;text-transform:uppercase}
@@ -338,7 +347,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.75);padding:70px 0 0}
   .svc-grid{grid-template-columns:repeat(2,1fr)}
   .steps{grid-template-columns:repeat(2,1fr)}
   .ind-grid{grid-template-columns:repeat(2,1fr)}
-  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr 1fr 1fr}
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:40px}
   .val-grid{grid-template-columns:repeat(2,1fr)}
   .blog-grid{grid-template-columns:repeat(2,1fr)}
@@ -427,8 +436,8 @@ def header(active="", transparent=False):
     </nav>
     <div class="nav-cta">
       <a href="tel:+919996444222" class="btn btn-ghost">
-        {I['phone']} +91 99964 44222
-      </a>
+              {I['phone']} +91 99964 44222
+            </a>
       <a href="contact.html" class="btn btn-primary">Get a Quote</a>
       <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -441,38 +450,64 @@ def footer():
 <footer>
   <div class="container foot-grid">
     <div class="foot-brand">
-      <img src="{ASSETS}/logo.png" alt="IRIS Fire & Security" />
-      <p>A leading system integrator in electronic safety &amp; security, delivering best-value, reliable and service-backed protection across Delhi NCR for 14+ years.</p>
+      <img src="{ASSETS}/logo.png" alt="IRIS Fire &amp; Security" />
+      <p><b>IRIS Fire &amp; Security</b> &mdash; Gurgaon-based system integrator delivering turnkey <b>CCTV surveillance, fire alarm systems, access control, building &amp; home automation, PA &amp; communication, AV, IT networking and AMC</b> across Delhi NCR for 14+ years.</p>
+      <div class="foot-contact">
+        <div class="row">{I['phone']}<a href="tel:+919996444222">+91 99964 44222</a></div>
+        <div class="row">{I['mail']}<a href="mailto:iris.gurgaon@gmail.com">iris.gurgaon@gmail.com</a></div>
+        <div class="row">{I['pin']}<span>Gurgaon, Haryana &mdash; serving all Delhi NCR</span></div>
+      </div>
     </div>
     <div class="foot-col">
-      <h5>Solutions</h5>
-      <a href="cctv-surveillance.html">Video Surveillance</a>
-      <a href="fire-alarm-system.html">Fire Alarm Systems</a>
-      <a href="access-control-system.html">Access Control</a>
-      <a href="building-automation.html">Home Automation</a>
+      <h5>Security Solutions</h5>
+      <a href="cctv-surveillance.html">CCTV Camera Installation</a>
+      <a href="fire-alarm-system.html">Fire Alarm &amp; Detection</a>
+      <a href="access-control-system.html">Access Control &amp; Barriers</a>
+      <a href="building-automation.html">Building &amp; Home Automation</a>
+      <a href="pa-system.html">PA &amp; Communication Systems</a>
+      <a href="av-solutions.html">Audio Visual (AV) Solutions</a>
+      <a href="it-networking.html">IT &amp; Networking</a>
       <a href="amc-services.html">AMC &amp; Maintenance</a>
+    </div>
+    <div class="foot-col">
+      <h5>Service Areas</h5>
+      <a href="service-area-gurgaon.html">Fire &amp; Security in Gurgaon</a>
+      <a href="service-area-delhi.html">Security Systems in Delhi</a>
+      <a href="service-area-noida.html">CCTV &amp; Fire in Noida</a>
+      <a href="service-area-faridabad.html">Security in Faridabad</a>
+      <a href="service-area-greater-noida.html">Systems in Greater Noida</a>
+      <a href="contact.html">Ghaziabad &amp; wider NCR</a>
+    </div>
+    <div class="foot-col">
+      <h5>Industries</h5>
+      <a href="industries.html">Education &amp; Schools</a>
+      <a href="industries.html">Healthcare &amp; Hospitals</a>
+      <a href="industries.html">Residential &amp; Villas</a>
+      <a href="industries.html">Commercial &amp; Offices</a>
+      <a href="industries.html">Government &amp; Defence</a>
+      <a href="industries.html">Retail &amp; Banking</a>
+      <a href="industries.html">Industrial &amp; Warehousing</a>
+      <a href="industries.html">Hospitality &amp; Hotels</a>
     </div>
     <div class="foot-col">
       <h5>Company</h5>
       <a href="about.html">About IRIS</a>
-      <a href="solutions.html">Solutions</a>
-      <a href="industries.html">Industries</a>
-      <a href="projects.html">Projects</a>
-      <a href="blog.html">Blog</a>
-    </div>
-    <div class="foot-col foot-contact">
-      <h5>Get in touch</h5>
-      <div class="row">{I['phone']}<span>+91 99964 44222</span></div>
-      <div class="row">{I['mail']}<span>iris.gurgaon@gmail.com</span></div>
-      <div class="row">{I['pin']}<span>Gurgaon, Haryana — serving Delhi NCR</span></div>
-      <form class="foot-news" onsubmit="event.preventDefault();this.innerHTML='<p style=&quot;color:var(--azure);font-size:14px&quot;>Thanks — we\\'ll be in touch.</p>'">
+      <a href="solutions.html">All Solutions</a>
+      <a href="projects.html">Our Projects</a>
+      <a href="blog.html">Blog &amp; Insights</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="contact.html">Request a Quote</a>
+      <form class="foot-news" onsubmit="event.preventDefault();this.innerHTML='<p style=&quot;color:var(--azure);font-size:14px&quot;>Thanks &mdash; we&#39;ll be in touch.</p>'">
         <input type="email" placeholder="Your email" required aria-label="Email" />
         <button type="submit">Subscribe</button>
       </form>
     </div>
   </div>
+  <div class="container foot-seo">
+    <p><b>IRIS Fire &amp; Security</b> is a trusted provider of <a href="cctv-surveillance.html">CCTV camera installation in Gurgaon</a>, <a href="fire-alarm-system.html">fire alarm systems in Delhi NCR</a>, <a href="access-control-system.html">biometric access control</a>, <a href="building-automation.html">home &amp; office automation</a>, <a href="pa-system.html">public address systems</a>, <a href="av-solutions.html">audio-visual integration</a>, <a href="it-networking.html">structured cabling &amp; networking</a> and <a href="amc-services.html">annual maintenance contracts (AMC)</a>. We serve <a href="service-area-gurgaon.html">Gurgaon</a>, <a href="service-area-delhi.html">Delhi</a>, <a href="service-area-noida.html">Noida</a>, <a href="service-area-faridabad.html">Faridabad</a>, <a href="service-area-greater-noida.html">Greater Noida</a> and the wider Delhi NCR region &mdash; delivering security camera installation, IP CCTV, surveillance systems, fire safety, gate automation and integrated building-management solutions for homes, offices, schools, hospitals, factories, hotels and retail.</p>
+  </div>
   <div class="container foot-bottom">
-    <span>&copy; 2026 IRIS Fire &amp; Security. All rights reserved.</span>
+    <span>&copy; 2026 IRIS Fire &amp; Security. All rights reserved. | Best CCTV, Fire Alarm &amp; Security Company in Gurgaon &amp; Delhi NCR.</span>
     <span class="status"><span class="live"></span> All monitored systems operational</span>
     <div class="foot-social">
       <a href="https://wa.me/919996444222" aria-label="WhatsApp">{I['phone']}</a>
@@ -484,7 +519,8 @@ def footer():
 JS = """
 <script>
 const hdr=document.getElementById('hdr');
-const onScroll=()=>{hdr.classList.toggle('header-solid',window.scrollY>30)};
+const alwaysSolid=hdr.classList.contains('header-solid');
+const onScroll=()=>{if(!alwaysSolid)hdr.classList.toggle('header-solid',window.scrollY>30)};
 onScroll();window.addEventListener('scroll',onScroll,{passive:true});
 const mb=document.getElementById('menuBtn'),mm=document.getElementById('mobileMenu');
 if(mb){mb.addEventListener('click',()=>mm.classList.toggle('open'));
@@ -667,7 +703,7 @@ def home():
 </div></section>"""
     return page("IRIS Fire & Security — Mission-Critical Fire & Security Solutions | Delhi NCR",
                 "IRIS Fire & Security is a leading system integrator in electronic safety & security. Turnkey fire alarm, CCTV, access control, automation & AMC across Delhi NCR.",
-                body, "index.html", transparent=True, json_ld=local_business_ld(), canonical=CANON+"/")
+                body, "index.html", transparent=False, json_ld=local_business_ld(), canonical=CANON+"/")
 
 def svc_card(ic,title,desc):
     return f'<div class="svc reveal"><div class="ic">{ic}</div><h3>{title}</h3><p>{desc}</p><a class="more" href="solutions.html">Learn more &rarr;</a></div>'
